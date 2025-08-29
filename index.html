@@ -1,6 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+
+<style id="fix-black-screen">
+  /* Keep any animated canvas in the back */
+  canvas, #bg, #matrix, #bg-canvas, #matrix-canvas {
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: -1 !important;
+  }
+  /* Make sure real content sits above */
+  header, main, section, footer, .hero, .shop, .content {
+    position: relative;
+    z-index: 2;
+  }
+  body { background:#0b0b0c; color:#fff; }
+</style>
+  
+  <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Warrior Lifestyle — Wear Your Mindset</title>
