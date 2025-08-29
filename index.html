@@ -7,27 +7,19 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #111;
-      color: #f5f5f5;
       margin: 0;
       padding: 0;
-    }
-
-    header, footer {
-      text-align: center;
-      padding: 20px;
-      background-color: #000;
-    }
-
-    section {
-      padding: 40px;
+      background-color: #111;
+      color: #fff;
       text-align: center;
     }
 
     nav {
-      background-color: #000;
+      background: #000;
       padding: 15px;
-      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
 
     nav ul {
@@ -40,50 +32,51 @@
     }
 
     nav ul li a {
-      color: #f5f5f5;
+      color: #fff;
       text-decoration: none;
       font-weight: bold;
-      transition: color 0.3s;
+      font-size: 18px;
+      transition: 0.3s;
     }
 
     nav ul li a:hover {
       color: red;
     }
 
-    .shop-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      margin-top: 20px;
+    h1, h2 {
+      margin: 20px 0;
+    }
+
+    section {
+      padding: 40px 20px;
     }
 
     .product-card {
-      background: #1c1c1c;
-      padding: 15px;
-      border-radius: 10px;
-      box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
+      background: #1a1a1a;
+      margin: 20px auto;
+      padding: 20px;
+      border-radius: 12px;
+      width: 300px;
+      box-shadow: 0px 4px 10px rgba(0,0,0,0.6);
     }
 
     .product-card img {
-      max-width: 100%;
+      width: 100%;
       border-radius: 10px;
-    }
-
-    .product-card h3 {
-      margin: 15px 0 10px;
     }
 
     .price {
       color: red;
+      font-weight: bold;
       font-size: 20px;
-      margin: 10px 0;
     }
 
     .buy-button {
       display: inline-block;
+      margin-top: 10px;
       padding: 10px 20px;
       background: red;
-      color: white;
+      color: #fff;
       text-decoration: none;
       border-radius: 5px;
       font-weight: bold;
@@ -92,6 +85,13 @@
 
     .buy-button:hover {
       background: darkred;
+    }
+
+    footer {
+      background: #000;
+      padding: 15px;
+      margin-top: 40px;
+      font-size: 14px;
     }
   </style>
 </head>
@@ -107,7 +107,7 @@
     </ul>
   </nav>
 
-  <!-- Hero / Home -->
+  <!-- Hero -->
   <header id="home">
     <h1>Welcome to Warrior Lifestyle</h1>
   </header>
@@ -115,37 +115,43 @@
   <!-- Mission Section -->
   <section id="mission">
     <h2>Our Mission</h2>
-    <p>Street. Gym. MMA. Warrior Lifestyle is more than clothing — it’s identity.</p>
+    <p>Street. Gym. MMA. Warrior Lifestyle is more than clothing – it's identity.</p>
   </section>
 
   <!-- Shop Section -->
   <section id="shop">
     <h2>Our Products</h2>
-    <div class="shop-grid">
-      <!-- Product Card 1 -->
-      <div class="product-card">
-        <img src="https://raw.githubusercontent.com/warriorlifestyleofficial/The.WarriorCode/refs/heads/main/boxing-shorts1.png" alt="Boxing Shorts 1">
-        <h3>Boxing Shorts 1</h3>
-        <p class="price">R699</p>
-      </div>
-      <!-- Product Card 2 -->
-      <div class="product-card">
-        <img src="https://raw.githubusercontent.com/warriorlifestyleofficial/The.WarriorCode/refs/heads/main/boxing-shorts2.png" alt="Boxing Shorts 2">
-        <h3>Boxing Shorts 2</h3>
-        <p class="price">R699</p>
-      </div>
-      <!-- Product Card 3 -->
-      <div class="product-card">
-        <img src="https://raw.githubusercontent.com/warriorlifestyleofficial/The.WarriorCode/refs/heads/main/boxing-shorts3.png" alt="Boxing Shorts 3">
-        <h3>Boxing Shorts 3</h3>
-        <p class="price">R699</p>
-      </div>
-      <!-- Product Card 4 -->
-      <div class="product-card">
-        <img src="https://raw.githubusercontent.com/warriorlifestyleofficial/The.WarriorCode/refs/heads/main/boxing-shorts4.png" alt="Boxing Shorts 4">
-        <h3>Boxing Shorts 4</h3>
-        <p class="price">R750</p>
-      </div>
+
+    <!-- Product Card 1 -->
+    <div class="product-card">
+      <img src="https://raw.githubusercontent.com/warriorlifestyleofficial/The.WarriorCode/refs/heads/main/boxing-shorts1.png" alt="Boxing Shorts 1">
+      <h3>Boxing Shorts 1</h3>
+      <p class="price">R699</p>
+      <a href="https://yourshopifylink.com/products/boxing-shorts-1" class="buy-button">Buy Now</a>
+    </div>
+
+    <!-- Product Card 2 -->
+    <div class="product-card">
+      <img src="https://raw.githubusercontent.com/warriorlifestyleofficial/The.WarriorCode/refs/heads/main/boxing-shorts2.png" alt="Boxing Shorts 2">
+      <h3>Boxing Shorts 2</h3>
+      <p class="price">R699</p>
+      <a href="https://yourshopifylink.com/products/boxing-shorts-2" class="buy-button">Buy Now</a>
+    </div>
+
+    <!-- Product Card 3 -->
+    <div class="product-card">
+      <img src="https://raw.githubusercontent.com/warriorlifestyleofficial/The.WarriorCode/refs/heads/main/boxing-shorts3.png" alt="Boxing Shorts 3">
+      <h3>Boxing Shorts 3</h3>
+      <p class="price">R699</p>
+      <a href="https://yourshopifylink.com/products/boxing-shorts-3" class="buy-button">Buy Now</a>
+    </div>
+
+    <!-- Product Card 4 -->
+    <div class="product-card">
+      <img src="https://raw.githubusercontent.com/warriorlifestyleofficial/The.WarriorCode/refs/heads/main/boxing-shorts4.png" alt="Boxing Shorts 4">
+      <h3>Boxing Shorts 4</h3>
+      <p class="price">R750</p>
+      <a href="https://yourshopifylink.com/products/boxing-shorts-4" class="buy-button">Buy Now</a>
     </div>
   </section>
 
@@ -153,34 +159,6 @@
   <section id="contact">
     <h2>Contact</h2>
     <p>Email: support@warriorlifestyle.com</p>
-  </section>
-          </body>
-
-  <!-- ✅ Navigation moved into body -->
-  
-    <ul>
-      <li><a href="#home">Home</a></li>
-      <li><a href="#mission">Mission</a></li>
-      <li><a href="#shop">Shop</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
-
-  <!-- Example Shop Section -->
-  <section id="shop">
-    <h2>Our Products</h2>
-    <div class="shop-grid">
-
-      <div class="product-card">
-        <img src="boxing-shorts1.png" alt="Boxing Shorts 1">
-        <h3>Boxing Shorts 1</h3>
-        <p class="price">R699</p>
-        <a href="#" class="buy-button">Buy Now</a>
-      </div>
-
-      <!-- add more product-cards below -->
-
-    </div>
   </section>
 
   <footer>
