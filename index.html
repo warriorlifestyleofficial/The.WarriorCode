@@ -1,109 +1,229 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Warrior Lifestyle</title>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background: #0b0b0c;
+      color: #fff;
+      overflow-x: hidden;
+    }
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background: rgba(0,0,0,0.7);
+      z-index: 1000;
+    }
+    header .logo {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.8rem;
+      color: gold;
+    }
+    header nav a {
+      margin-left: 1.5rem;
+      text-decoration: none;
+      color: #fff;
+      font-weight: 500;
+      transition: color .3s;
+    }
+    header nav a:hover {
+      color: gold;
+    }
+    .hero {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+    .hero img {
+      width: 180px;
+      margin-bottom: 1rem;
+      filter: drop-shadow(0 0 20px rgba(255,215,0,0.7));
+      animation: hologram 3s infinite alternate;
+    }
+    @keyframes hologram {
+      from { transform: scale(1) rotateX(0); opacity: 1; }
+      to { transform: scale(1.05) rotateX(15deg); opacity: 0.9; }
+    }
+    .hero h1 {
+      font-family: 'Oswald', sans-serif;
+      font-size: 3rem;
+      text-transform: uppercase;
+      color: #fff;
+      text-shadow: 0 0 10px gold, 0 0 20px gold;
+      animation: glitch 1s infinite;
+    }
+    @keyframes glitch {
+      0% { text-shadow: 2px 0 red, -2px 0 blue; }
+      20% { text-shadow: -2px 0 red, 2px 0 blue; }
+      40% { text-shadow: 2px 2px red, -2px -2px blue; }
+      60% { text-shadow: -2px -2px red, 2px 2px blue; }
+      80% { text-shadow: 2px -2px red, -2px 2px blue; }
+      100% { text-shadow: none; }
+    }
+    .cta-btn {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.75rem 1.5rem;
+      font-size: 1.2rem;
+      color: #fff;
+      background: linear-gradient(45deg, gold, #b8860b);
+      border: none;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: transform .3s;
+    }
+    .cta-btn:hover {
+      transform: scale(1.1);
+    }
+    section {
+      padding: 4rem 2rem;
+      position: relative;
+      z-index: 2;
+    }
+    h2 {
+      font-family: 'Oswald', sans-serif;
+      font-size: 2rem;
+      color: gold;
+      margin-bottom: 1rem;
+    }
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+      gap: 2rem;
+    }
+    .product {
+      background: rgba(255,255,255,0.05);
+      padding: 1rem;
+      border-radius: 10px;
+      transition: transform .3s, box-shadow .3s;
+    }
+    .product:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 15px rgba(255,215,0,0.5);
+    }
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background: rgba(0,0,0,0.8);
+      position: relative;
+      z-index: 2;
+    }
 
-<style id="fix-black-screen">
-  /* Keep any animated canvas in the back */
-  canvas, #bg, #matrix, #bg-canvas, #matrix-canvas {
-    position: fixed !important;
-    inset: 0 !important;
-    z-index: -1 !important;
-  }
-  /* Make sure real content sits above */
-  header, main, section, footer, .hero, .shop, .content {
-    position: relative;
-    z-index: 2;
-  }
-  body { background:#0b0b0c; color:#fff; }
-</style>
-  
-  <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Warrior Lifestyle — Wear Your Mindset</title>
+    /* FIX: Ensure canvas stays behind everything */
+    canvas, #bg, #matrix, #bg-canvas, #matrix-canvas {
+      position: fixed !important;
+      inset: 0 !important;
+      z-index: -1 !important;
+    }
+  </style>
+</head>
+<body>
+  <!-- Intro Overlay (if it exists, will auto-hide) -->
+  <div id="intro" style="position:fixed;inset:0;background:#000;z-index:9999;display:flex;align-items:center;justify-content:center;color:gold;font-family:Oswald,sans-serif;font-size:2rem;">
+    Warrior Lifestyle Loading...
+  </div>
 
-<!-- Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+  <header>
+    <div class="logo">Warrior Lifestyle</div>
+    <nav>
+      <a href="#shop">Shop</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
 
-<style>
-:root{
-  --bg:#0b0b0b; --bg-2:#121212; --card:#171717; --ink:#f2f2f2; --muted:#a7a7a7;
-  --gold:#c9a227; --gold-2:#e2c25f; --accent:#1e90ff; /* set to #e01e37 for red CTA */
-  --shadow:0 12px 40px rgba(0,0,0,.45); --radius:18px;
-}
-*{box-sizing:border-box} html,body{height:100%}
-body{margin:0;background:linear-gradient(180deg,var(--bg),#000);color:var(--ink);
-  font-family:Montserrat,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased}
+  <main>
+    <section class="hero">
+      <img src="logo.jpg" alt="Warrior Lifestyle Logo" />
+      <h1>Wear Your Mindset, Live The Lifestyle</h1>
+      <a href="#shop" class="cta-btn">Shop the Collection</a>
+    </section>
 
-/* ===== CINEMATIC INTRO (POV FIGHTER) ===== */
-#cinema{
-  position:fixed; inset:0; background:#000; z-index:2000; display:grid; place-items:center; overflow:hidden;
-}
-.c-stage{position:relative; width:100%; height:100%}
-.c-smoke{
-  position:absolute; inset:-20%; background:
-  radial-gradient(60vw 60vw at 20% 20%, rgba(255,255,255,.04), transparent 60%),
-  radial-gradient(60vw 60vw at 80% 20%, rgba(255,255,255,.04), transparent 60%);
-  filter:blur(2px); animation:smoke 14s linear infinite; opacity:.5
-}
-@keyframes smoke {0%{transform:translateX(0)}100%{transform:translateX(-5%)}}
-.c-ring{
-  position:absolute; inset:0; background:
-  radial-gradient(120vw 120vw at 50% 90%, rgba(0,0,0,.7), transparent 45%),
-  radial-gradient(50vw 20vw at 50% 98%, rgba(255,255,255,.05), transparent 60%),
-  conic-gradient(from 0deg, rgba(255,255,255,.03), rgba(0,0,0,0) 40%, rgba(255,255,255,.03), rgba(0,0,0,0) 80%);
-  mix-blend-mode:screen;
-}
-.c-opponent{
-  position:absolute; bottom:14%; left:50%; width:40vmin; height:56vmin; transform:translateX(-50%);
-  background: radial-gradient(20vmin 24vmin at 50% 15%, #111, #000 60%),
-             radial-gradient(12vmin 10vmin at 50% 50%, #0a0a0a, #000 70%);
-  border-radius:40% 40% 10% 10%/48% 48% 20% 20%;
-  filter:drop-shadow(0 30px 60px rgba(0,0,0,.9)); opacity:.88;
-}
-.c-glove{
-  position:absolute; bottom:18%; left:30%; width:16vmin; height:12vmin; border-radius:50%;
-  background:radial-gradient(circle at 40% 30%, #222, #000); transform-origin:70% 40%;
-  animation:miss 2.7s ease-in forwards;
-}
-.c-glove.right{left:auto; right:30%; animation:hit 4.1s ease-in forwards}
-@keyframes miss{
-  0%{transform:translate(0,0) rotate(-8deg)}
-  30%{transform:translate(18vmin, -2vmin) rotate(12deg)}
-  55%{transform:translate(26vmin,0) rotate(6deg)}
-  100%{transform:translate(0,0) rotate(-8deg)}
-}
-@keyframes hit{
-  0%{transform:translate(0,0) rotate(8deg)}
-  40%{transform:translate(-10vmin,-3vmin) rotate(-6deg)}
-  85%{transform:translate(-28vmin,0) rotate(-2deg)}
-  100%{transform:translate(12vmin,2vmin) rotate(16deg)}
-}
-.c-vig{position:absolute; inset:0; box-shadow:inset 0 0 160px rgba(0,0,0,.95);}
-.c-impact{position:absolute; inset:0; background:radial-gradient(closest-side, rgba(255,255,255,.0), rgba(255,255,255,.0)); pointer-events:none}
-.c-text{position:absolute; top:6%; width:100%; text-align:center; font-family:Oswald; letter-spacing:.3em; color:#cfcfcf; font-size:12px}
-.c-skip{position:absolute; right:14px; top:14px; z-index:10; background:#0f0f0f; border:1px solid rgba(255,255,255,.2); color:#eee; padding:8px 12px; border-radius:10px; cursor:pointer}
+    <section id="shop">
+      <h2>Featured Collections</h2>
+      <div class="products">
+        <div class="product">Gym Gear</div>
+        <div class="product">MMA Apparel</div>
+        <div class="product">Muay Thai Shorts</div>
+        <div class="product">Hoodies</div>
+      </div>
+    </section>
 
-/* flash & shake when hit */
-body.hit .c-impact{animation:flash .34s ease}
-@keyframes flash{0%{background:radial-gradient(closest-side, rgba(255,255,255,.85), rgba(255,255,255,.0) 65%)}100%{background:transparent}}
-body.hit{animation:shake .38s cubic-bezier(.36,.07,.19,.97) both}
-@keyframes shake{
-  10%,90%{transform:translate3d(-1px,0,0)}
-  20%,80%{transform:translate3d(2px,0,0)}
-  30%,50%,70%{transform:translate3d(-4px,0,0)}
-  40%,60%{transform:translate3d(4px,0,0)}
-}
+    <section id="about">
+      <h2>About Warrior Lifestyle</h2>
+      <p>Warrior Lifestyle is more than apparel—it’s discipline, mindset, and the fight within. Our gear is designed for fighters, athletes, and anyone who lives with strength and purpose.</p>
+    </section>
+  </main>
 
-/* ===== NAV (unchanged) ===== */
-nav{position:sticky; top:0; z-index:999; backdrop-filter:saturate(160%) blur(8px);
-  background:linear-gradient(180deg,rgba(0,0,0,.85),rgba(0,0,0,.55)); border-bottom:1px solid rgba(255,255,255,.06)}
-.nav-wrap{max-width:1200px; margin:auto; display:flex; align-items:center; justify-content:space-between; padding:14px 20px}
-.brand{display:flex; align-items:center; gap:12px; text-decoration:none}
-.brand img{height:36px; width:36px; object-fit:contain; filter:drop-shadow(0 0 12px rgba(255,255,255,.08))}
-.brand span{font-family:Oswald; letter-spacing:.5px; font-size:22px; font-weight:700;
-  background:linear-gradient(90deg,var(--gold),var(--gold-2)); -webkit-background-clip:text; background-clip:text; color:transparent}
-.nav-links{display:flex; gap:24px; align-items:center}
-.nav-links a{text-decoration:none; color:#eaeaea; font-weight:600; letter-spacing:.25px; position:relative; padding:8px 4px; transition:.25s}
-.nav-links a:after{content:""; position:absolute; left:0; right:0; bottom:-6px; height:2px; background:linear-gradient(90deg,var(--gold),transparent); transform:scaleX(0); transform-origin:left; transition:.25s}
-.nav-links a:hover{color:#fff}.nav-links a:hover:after{transform:scaleX(1)}
-.nav-cta{padding:10px 14px; border-radius:999px; font-weight:700; letter-spacing:.3px; background:linear-gradient(90deg,var(--
+  <footer>
+    <p>&copy; 2025 Warrior Lifestyle. All rights reserved.</p>
+  </footer>
+
+  <!-- Matrix Background -->
+  <canvas id="matrix"></canvas>
+
+  <script>
+    // MATRIX BACKGROUND EFFECT
+    const canvas = document.getElementById("matrix");
+    const ctx = canvas.getContext("2d");
+    canvas.height = window.innerHeight;
+    canvas.width = window.innerWidth;
+    const chars = "01";
+    const font_size = 16;
+    const columns = canvas.width / font_size;
+    const drops = Array(Math.floor(columns)).fill(1);
+    function drawMatrix() {
+      ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = "gold";
+      ctx.font = font_size + "px monospace";
+      for (let i = 0; i < drops.length; i++) {
+        const text = chars[Math.floor(Math.random() * chars.length)];
+        ctx.fillText(text, i * font_size, drops[i] * font_size);
+        if (drops[i] * font_size > canvas.height && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+        drops[i]++;
+      }
+    }
+    setInterval(drawMatrix, 50);
+
+    // FIX: Auto-remove intro after 4s or allow skipping
+    function endIntro() {
+      const intro = document.getElementById('intro');
+      if (intro) {
+        intro.style.transition = 'opacity .6s';
+        intro.style.opacity = '0';
+        setTimeout(()=> intro.remove(), 700);
+      }
+      document.body.style.overflow = 'auto';
+    }
+    setTimeout(endIntro, 4000);
+
+    // Add Skip button
+    const skipBtn = document.createElement('button');
+    skipBtn.textContent = 'Skip intro';
+    Object.assign(skipBtn.style, {
+      position:'fixed', right:'12px', bottom:'12px', padding:'10px 14px',
+      zIndex:99999, border:'1px solid rgba(255,255,255,.25)', background:'transparent',
+      color:'#fff', borderRadius:'10px', backdropFilter:'blur(6px)', cursor:'pointer'
+    });
+    skipBtn.onclick = endIntro;
+    document.body.appendChild(skipBtn);
+  </script>
+</body>
+</html>
