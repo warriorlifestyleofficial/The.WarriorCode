@@ -1,73 +1,332 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Warrior Lifestyle — Opening Soon</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Warrior Lifestyle — Wear Your Mindset</title>
+  <meta name="description" content="Warrior Lifestyle — premium fightwear built for pressure, power and purpose. Opening soon." />
+  <meta name="theme-color" content="#0b0b0b" />
+  <meta property="og:title" content="Warrior Lifestyle — Wear Your Mindset" />
+  <meta property="og:description" content="Premium fightwear for street, gym, and MMA. Opening soon." />
+  <meta property="og:type" content="website" />
 
-<!-- Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 
-<style>
-:root{
-  --bg:#0b0b0b; --card:#161616; --ink:#f5f5f5; --muted:#b0b0b0;
-  --gold:#c9a227; --gold-2:#e2c25f;
-}
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:Montserrat,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
+  <style>
+    :root{
+      --page:#f7f7f8;            /* modern light canvas */
+      --ink:#0e0e10;             /* primary text */
+      --muted:#6b6b72;           /* secondary text */
+      --matte:#141416;           /* matte black surfaces */
+      --panel:#1a1b1e;           /* deeper matte */
+      --ring:rgba(0,0,0,.08);    /* borders */
+      --brand:#111;              /* brand dark */
+      --gold:#caa83a;            /* accent gold */
+      --gold-2:#e6cf7a;          /* lighter gold */
+      --cta:#111111;             /* CTA dark */
+      --ctaText:#ffffff;         /* CTA text */
+      --radius:16px;
+      --shadow:0 10px 30px rgba(17,17,17,.12);
+    }
 
-/* Logo + header */
-header{text-align:center;padding:30px 20px}
-header img{height:70px;margin-bottom:12px}
-header h1{font-family:Oswald;font-size:28px;background:linear-gradient(90deg,var(--gold),var(--gold-2));
-  -webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:8px}
-header p{color:var(--muted);font-size:15px}
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background: var(--page);
+      color: var(--ink);
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+      line-height:1.6;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+    a{color:inherit}
 
-/* Product grid */
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;max-width:1000px;margin:40px auto;padding:0 20px}
-.card{background:var(--card);border-radius:12px;padding:16px;text-align:center;box-shadow:0 4px 14px rgba(0,0,0,.5)}
-.card img{max-width:100%;height:200px;object-fit:contain;margin-bottom:12px}
-.card h3{font-family:Oswald;font-size:18px;margin:6px 0}
-.price{color:var(--gold);font-weight:700;margin-bottom:10px}
-.buy{display:inline-block;background:linear-gradient(90deg,var(--gold),var(--gold-2));
-  color:#111;text-decoration:none;padding:10px 16px;border-radius:8px;font-weight:700}
-.buy:hover{opacity:.9}
+    /* ===== Top Bar / Nav ===== */
+    .nav{
+      position:sticky; top:0; z-index:1000;
+      backdrop-filter:saturate(140%) blur(8px);
+      background:rgba(255,255,255,.75);
+      border-bottom:1px solid var(--ring);
+    }
+    .wrap{width:min(1200px,92%); margin:0 auto;}
+    .nav-inner{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 0;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px; text-decoration:none;
+    }
+    .brand img{
+      width:40px; height:40px; object-fit:contain; border-radius:10px;
+      box-shadow:0 2px 10px rgba(0,0,0,.06);
+    }
+    .brand .name{
+      font-family:Oswald; font-weight:700; letter-spacing:.04em; font-size:18px;
+      background:linear-gradient(90deg, var(--brand), var(--gold));
+      -webkit-background-clip:text; background-clip:text; color:transparent;
+    }
+    .links{display:flex; gap:18px; align-items:center;}
+    .links a{
+      text-decoration:none; font-weight:600; color:var(--ink);
+      padding:8px 10px; border-radius:10px;
+    }
+    .links a:hover{background:rgba(0,0,0,.04)}
+    .buy-now{
+      background:var(--cta); color:var(--ctaText); text-decoration:none; font-weight:800;
+      padding:10px 14px; border-radius:999px; box-shadow:0 8px 18px rgba(0,0,0,.12);
+    }
+    .menu-btn{display:none}
 
-/* Contact */
-#contact{background:#111;padding:40px 20px;text-align:center}
-#contact h2{font-family:Oswald;font-size:22px;margin-bottom:12px}
-#contact p{color:var(--muted);margin:4px 0;font-size:14px}
+    /* ===== Hero / Intro ===== */
+    .hero{
+      position:relative; overflow:hidden;
+      background:
+        radial-gradient(1200px 400px at 50% -10%, rgba(0,0,0,.06), transparent 50%),
+        radial-gradient(900px 320px at 10% 10%, rgba(202,168,58,.08), transparent 60%),
+        radial-gradient(900px 320px at 90% 10%, rgba(0,0,0,.06), transparent 60%),
+        #ffffff;
+      border-bottom:1px solid var(--ring);
+    }
+    .hero-inner{
+      display:grid; grid-template-columns: 1.2fr 1fr; gap:28px;
+      align-items:center; padding:48px 0;
+    }
+    .kick{
+      display:inline-block; font-size:12px; font-weight:800; letter-spacing:.28em;
+      color:#7a7a81; text-transform:uppercase;
+    }
+    .hero h1{
+      margin:8px 0 10px; font-family:Oswald; line-height:1.06;
+      font-size: clamp(34px, 5.6vw, 64px);
+    }
+    .hero h1 .accent{
+      background:linear-gradient(90deg, var(--brand), var(--gold-2));
+      -webkit-background-clip:text; background-clip:text; color:transparent;
+      text-shadow:0 10px 32px rgba(202,168,58,.18);
+    }
+    .hero p{color:var(--muted); margin:8px 0 18px}
+    .cta-row{display:flex; gap:12px; flex-wrap:wrap}
+    .btn{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:12px 16px; border-radius:12px; font-weight:800; text-decoration:none;
+      border:1px solid var(--ring);
+    }
+    .btn.primary{background:var(--cta); color:var(--ctaText); border-color:transparent}
+    .btn.ghost{background:#fff}
 
-/* Footer */
-footer{text-align:center;padding:20px;font-size:13px;color:#777}
-</style>
+    .hero-card{
+      background:var(--matte); color:#f3f3f5; border-radius:var(--radius);
+      border:1px solid rgba(0,0,0,.18); box-shadow:var(--shadow); padding:18px;
+    }
+    .hero-card h3{font-family:Oswald; margin:6px 0 8px; font-size:18px; letter-spacing:.02em}
+    .hero-card p{color:#d0d0d6; font-size:14px; margin:0}
+    .note{display:flex; align-items:center; gap:8px; margin-top:10px; font-size:13px; color:#c7c7cd}
+    .dot{width:8px; height:8px; border-radius:999px; background:linear-gradient(90deg,var(--gold),var(--gold-2)); box-shadow:0 0 0 4px rgba(202,168,58,.15)}
+
+    /* ===== Products ===== */
+    .section{padding:48px 0}
+    .section h2{
+      font-family:Oswald; font-size:26px; letter-spacing:.02em; margin:0 0 10px;
+    }
+    .muted{color:var(--muted); font-size:14px}
+    .grid{
+      display:grid; gap:18px; grid-template-columns:repeat(auto-fit, minmax(230px,1fr));
+      margin-top:18px;
+    }
+    .card{
+      background:#fff; border:1px solid var(--ring); border-radius:14px;
+      padding:14px; box-shadow:var(--shadow);
+      transition:transform .15s ease, box-shadow .15s ease;
+    }
+    .card:hover{transform:translateY(-3px); box-shadow:0 18px 34px rgba(0,0,0,.12)}
+    .thumb{aspect-ratio:4/5; background:linear-gradient(180deg,#f2f2f4,#eaeaec);
+      border-radius:10px; overflow:hidden; display:grid; place-items:center; margin-bottom:10px}
+    .thumb img{width:100%; height:100%; object-fit:contain}
+    .title{font-weight:800; font-size:15px}
+    .price{color:var(--brand); font-weight:800; margin-top:6px}
+    .actions{display:flex; gap:10px; margin-top:12px}
+    .buy{
+      flex:1; text-align:center; text-decoration:none; font-weight:800;
+      padding:10px 12px; border-radius:10px; color:#fff; background:var(--brand);
+    }
+    .quick{
+      flex:1; text-align:center; text-decoration:none; font-weight:800;
+      padding:10px 12px; border-radius:10px; border:1px solid var(--ring);
+      background:#fff; color:#111;
+    }
+
+    /* ===== Contact & Footer ===== */
+    .contact{
+      background: linear-gradient(180deg, #ffffff, #f3f3f6);
+      border-top:1px solid var(--ring);
+      border-bottom:1px solid var(--ring);
+      padding:36px 0;
+    }
+    .contact-card{
+      background:#fff; border:1px solid var(--ring); border-radius:14px;
+      box-shadow:var(--shadow); padding:18px;
+      display:grid; gap:4px;
+    }
+    .contact-card a{color:#0a66c2; text-decoration:none}
+    footer{
+      text-align:center; color:#7c7c86; font-size:13px; padding:18px 0;
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width:900px){
+      .hero-inner{grid-template-columns:1fr; padding:32px 0}
+    }
+
+    /* Respect reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      *{animation:none !important; transition:none !important}
+    }
+  </style>
 </head>
 <body>
 
-<!-- HEADER -->
-<header>
-  <img src="logo.jpg" alt="Warrior Lifestyle Logo"/>
-  <h1>Warrior Lifestyle</h1>
-  <p>Official Store — Opening Soon</p>
-  <p>Email: warriorlifestyle.store@gmail.com</p>
-  <p>Shopify Owner: Warrior Lifestyle</p>
-</header>
+  <!-- NAV -->
+  <div class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#home" aria-label="Warrior Lifestyle Home">
+        <img src="logo.jpg" alt="Warrior Lifestyle Logo" />
+        <span class="name">WARRIOR LIFESTYLE</span>
+      </a>
+      <div class="links">
+        <a href="#shop">Shop</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+        <a class="buy-now" href="https://d8bipr-ra.myshopify.com" target="_blank" rel="noopener">Go to Shopify</a>
+      </div>
+    </div>
+  </div>
 
-<!-- PRODUCT GRID -->
-<section class="grid">
-  <div class="card">
-    <img src="https://raw.githubusercontent.com/warriorlifestyleofficial/The.WarriorCode/refs/heads/main/boxing-shorts1.png" alt="Shorts 1">
-    <h3>Boxing Shorts 1</h3>
-    <div class="price">R699</div>
-    <a class="buy" href="https://d8bipr-ra.myshopify.com/products/shorts-1">Buy</a>
-  </div>
-  <div class="card">
-    <img src="https://raw.githubusercontent.com/warriorlifestyleofficial/The.WarriorCode/refs/heads/main/boxing-shorts2.png" alt="Shorts 2">
-    <h3>Boxing Shorts 2</h3>
-    <div class="price">R699</div>
-    <a class="buy" href="https://d8bipr-ra.myshopify.com/products/shorts-2">Buy</a>
-  </div>
-  <div class="card">
-    <img src="https://raw.githubusercontent.com/warriorlifestyleofficial/The.WarriorCode/refs/heads/main/boxing-shorts3.png" alt="Shorts 3">
-    <h3>Boxing Shorts 3</h3>
-    <div
+  <!-- HERO -->
+  <header id="home" class="hero">
+    <div class="wrap hero-inner">
+      <div>
+        <span class="kick">WEAR YOUR MINDSET</span>
+        <h1><span class="accent">Strength. Discipline. Legacy.</span> Built for pressure, power and purpose.</h1>
+        <p>Street • Gym • MMA. This is more than clothing — it’s identity. We bring Christ to the fight and purpose to the grind. Official store <strong>opening soon</strong>.</p>
+        <div class="cta-row">
+          <a class="btn primary" href="#shop">Shop Best Sellers</a>
+          <a class="btn ghost" href="https://d8bipr-ra.myshopify.com" target="_blank" rel="noopener">Visit Shopify</a>
+        </div>
+      </div>
+
+      <div class="hero-card" aria-label="Store status">
+        <h3>Store Status</h3>
+        <p>Shop is live on Shopify. New drops incoming.</p>
+        <div class="note"><span class="dot"></span> Limited quantities on first run.</div>
+        <div class="note"><span class="dot"></span> Secure checkout via Shopify.</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- SHOP -->
+  <main class="wrap section" id="shop" aria-label="Best Sellers">
+    <h2>Best Sellers</h2>
+    <div class="muted">Four core shorts — premium, durable, built to move.</div>
+
+    <div class="grid" role="list">
+      <!-- Product 1 -->
+      <article class="card" role="listitem">
+        <div class="thumb">
+          <img src="https://raw.githubusercontent.com/warriorlifestyleofficial/The.WarriorCode/refs/heads/main/boxing-shorts1.png" alt="Warrior Lifestyle Boxing Shorts 1" loading="lazy">
+        </div>
+        <div class="title">Boxing Shorts 1</div>
+        <div class="price">R699</div>
+        <div class="actions">
+          <a class="quick" href="https://d8bipr-ra.myshopify.com/products/shorts-1" target="_blank" rel="noopener">Details</a>
+          <a class="buy" href="https://d8bipr-ra.myshopify.com/products/shorts-1" target="_blank" rel="noopener">Buy</a>
+        </div>
+      </article>
+
+      <!-- Product 2 -->
+      <article class="card" role="listitem">
+        <div class="thumb">
+          <img src="https://raw.githubusercontent.com/warriorlifestyleofficial/The.WarriorCode/refs/heads/main/boxing-shorts2.png" alt="Warrior Lifestyle Boxing Shorts 2" loading="lazy">
+        </div>
+        <div class="title">Boxing Shorts 2</div>
+        <div class="price">R699</div>
+        <div class="actions">
+          <a class="quick" href="https://d8bipr-ra.myshopify.com/products/shorts-2" target="_blank" rel="noopener">Details</a>
+          <a class="buy" href="https://d8bipr-ra.myshopify.com/products/shorts-2" target="_blank" rel="noopener">Buy</a>
+        </div>
+      </article>
+
+      <!-- Product 3 -->
+      <article class="card" role="listitem">
+        <div class="thumb">
+          <img src="https://raw.githubusercontent.com/warriorlifestyleofficial/The.WarriorCode/refs/heads/main/boxing-shorts3.png" alt="Warrior Lifestyle Boxing Shorts 3" loading="lazy">
+        </div>
+        <div class="title">Boxing Shorts 3</div>
+        <div class="price">R699</div>
+        <div class="actions">
+          <a class="quick" href="https://d8bipr-ra.myshopify.com/products/shorts-3" target="_blank" rel="noopener">Details</a>
+          <a class="buy" href="https://d8bipr-ra.myshopify.com/products/shorts-3" target="_blank" rel="noopener">Buy</a>
+        </div>
+      </article>
+
+      <!-- Product 4 (R750) -->
+      <article class="card" role="listitem">
+        <div class="thumb">
+          <img src="https://raw.githubusercontent.com/warriorlifestyleofficial/The.WarriorCode/refs/heads/main/boxing-shorts4.png" alt="Warrior Lifestyle Boxing Shorts 4" loading="lazy">
+        </div>
+        <div class="title">Boxing Shorts 4</div>
+        <div class="price">R750</div>
+        <div class="actions">
+          <a class="quick" href="https://d8bipr-ra.myshopify.com/products/shorts-4" target="_blank" rel="noopener">Details</a>
+          <a class="buy" href="https://d8bipr-ra.myshopify.com/products/shorts-4" target="_blank" rel="noopener">Buy</a>
+        </div>
+      </article>
+    </div>
+  </main>
+
+  <!-- ABOUT -->
+  <section id="about" class="wrap section" aria-label="About Warrior Lifestyle">
+    <h2>About the Brand</h2>
+    <p class="muted" style="max-width:760px">
+      Warrior Lifestyle is not fashion — it’s a code. We fight with discipline, endure with strength,
+      and carry faith into every battle. Designed for street, gym, and MMA, our gear represents
+      strength, discipline, and the eternal truth of Christ.
+    </p>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="contact" aria-label="Contact">
+    <div class="wrap">
+      <h2 style="font-family:Oswald; margin:0 0 12px;">Contact Us</h2>
+      <div class="contact-card">
+        <div><strong>Email:</strong> <a href="mailto:warriorlifestyle.store@gmail.com">warriorlifestyle.store@gmail.com</a></div>
+        <div><strong>Phone:</strong> 076 562 2628 &nbsp;/&nbsp; 076 944 6432</div>
+        <div><strong>Shopify:</strong> <a href="https://d8bipr-ra.myshopify.com" target="_blank" rel="noopener">d8bipr-ra.myshopify.com</a></div>
+        <div><strong>Owner:</strong> Warrior Lifestyle</div>
+        <div class="muted" style="margin-top:6px;">Opening soon — new drops incoming.</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    © <span id="year"></span> Warrior Lifestyle. All rights reserved.
+  </footer>
+
+  <script>
+    // current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // smooth scroll for in-page links
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const id = a.getAttribute('href');
+        if(id.length > 1){
+          e.preventDefault();
+          document.querySelector(id)?.scrollIntoView({behavior:'smooth', block:'start'});
+        }
+      });
+    });
+  </script>
+</body>
+</html>
