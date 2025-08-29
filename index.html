@@ -8,8 +8,9 @@
     body {
       margin: 0;
       font-family: 'Arial Black', sans-serif;
-      background-color: #111;
+      background: #000; /* solid black to match Matrix effect */
       color: #fff;
+      overflow: hidden;
     }
 
     /* Navigation */
@@ -21,143 +22,87 @@
       top: 0;
       z-index: 1000;
     }
-
-    nav ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
-
-    nav ul li {
-      display: inline;
-      margin: 0 20px;
-    }
-
+    nav ul { list-style: none; margin: 0; padding: 0; }
+    nav ul li { display: inline; margin: 0 20px; }
     nav ul li a {
-      color: #fff;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 18px;
+      color: #fff; text-decoration: none; font-weight: bold; font-size: 18px;
       transition: color 0.3s;
     }
-
-    nav ul li a:hover {
-      color: red;
-    }
+    nav ul li a:hover { color: red; }
 
     /* Hero Section */
     .hero {
-      height: 90vh;
-      background: url('https://raw.githubusercontent.com/warriorlifestyleofficial/The.WarriorCode/main/boxing-shorts1.png') center/cover no-repeat;
+      height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
       flex-direction: column;
+      position: relative;
+      z-index: 2;
     }
-
     .hero h1 {
       font-size: 50px;
-      text-shadow: 2px 2px 10px black;
-      color: red;
-      animation: fadeInDown 1s ease-out;
+      color: #0f0; /* neon green for glitch */
+      text-shadow: 2px 2px 10px #00ff00;
+      animation: glitch 2s infinite;
     }
-
     .hero p {
       font-size: 20px;
       max-width: 600px;
       margin: 20px auto;
       color: #ddd;
-      animation: fadeInUp 1.2s ease-out;
     }
 
-    /* Section Titles */
-    h2 {
-      text-align: center;
-      margin-top: 60px;
-      font-size: 36px;
-      color: red;
+    /* Hologram Logo */
+    .holo-logo {
+      width: 250px;
+      filter: brightness(1.5) contrast(1.2);
+      animation: flicker 2.5s infinite, glow 1.5s infinite alternate, float3D 6s infinite ease-in-out;
     }
 
-    /* Product Grid */
-    .products {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      padding: 40px;
+    @keyframes float3D {
+      0%, 100% { transform: rotateY(0) rotateX(0) translateY(0); }
+      50% { transform: rotateY(15deg) rotateX(10deg) translateY(-20px); }
+    }
+    @keyframes flicker {
+      0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
+      20%, 22%, 24%, 55% { opacity: 0.4; }
+    }
+    @keyframes glow {
+      from { filter: drop-shadow(0 0 5px #0ff) drop-shadow(0 0 10px #0ff); }
+      to { filter: drop-shadow(0 0 20px #0ff) drop-shadow(0 0 30px #0ff); }
     }
 
-    .product-card {
-      background: #222;
-      border-radius: 15px;
-      overflow: hidden;
-      text-align: center;
-      padding-bottom: 20px;
-      transition: transform 0.3s, box-shadow 0.3s;
+    /* Glitch Effect */
+    @keyframes glitch {
+      0% { text-shadow: 2px 2px #ff00ff, -2px -2px #00ffff; }
+      20% { text-shadow: -2px -2px #ff00ff, 2px 2px #00ffff; }
+      40% { text-shadow: 2px -2px #ff00ff, -2px 2px #00ffff; }
+      60% { text-shadow: -2px 2px #ff00ff, 2px -2px #00ffff; }
+      80% { text-shadow: 2px 2px #ff00ff, -2px -2px #00ffff; }
+      100% { text-shadow: 2px 2px 10px #00ff00; }
     }
 
-    .product-card:hover {
-      transform: scale(1.05);
-      box-shadow: 0px 5px 20px rgba(255, 0, 0, 0.5);
-    }
-
-    .product-card img {
+    /* Matrix Background Canvas */
+    canvas#matrix-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
       width: 100%;
-      height: auto;
+      height: 100%;
+      z-index: 0;
+      background: black;
     }
 
-    .product-card h3 {
-      margin: 15px 0 5px;
-      font-size: 20px;
-    }
-
-    .price {
-      color: red;
-      font-size: 18px;
-      font-weight: bold;
-    }
-
-    .buy-button {
-      display: inline-block;
-      background: red;
-      color: #fff;
-      padding: 10px 20px;
-      margin-top: 10px;
-      border-radius: 5px;
-      text-decoration: none;
-      transition: background 0.3s;
-    }
-
-    .buy-button:hover {
-      background: darkred;
-    }
-
-    /* Footer */
-    footer {
-      text-align: center;
-      padding: 20px;
-      background: #000;
-      margin-top: 40px;
-    }
-
-    footer p {
-      margin: 0;
-      color: #888;
-    }
-
-    /* Animations */
-    @keyframes fadeInDown {
-      from { opacity: 0; transform: translateY(-30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+    /* Shop, Mission, Footer (keep your existing styles) */
+    section { position: relative; z-index: 2; }
+    footer { text-align: center; padding: 20px; background: #000; margin-top: 40px; z-index: 2; position: relative; }
+    footer p { margin: 0; color: #888; }
   </style>
 </head>
 <body>
+  <canvas id="matrix-bg"></canvas>
 
   <!-- Navigation -->
   <nav>
@@ -170,93 +115,25 @@
   </nav>
 
   <!-- Hero -->
-<section class="hero" id="home">
-  <div class="hero-content">
+  <section class="hero" id="home">
     <img src="logo.jpg" alt="Warrior Lifestyle Logo" class="holo-logo">
     <h1>Warrior Lifestyle</h1>
-    <p>Street. Gym. MMA. More than clothing – it’s identity.</p>
-  </div>
-</section>
-
-<style>
-/* Hero Section */
-.hero {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  background: #000; /* solid black instead of shorts */
-  color: #fff;
-}
-
-/* Hologram Logo Effect */
-.holo-logo {
-  max-width: 220px;
-  margin-bottom: 20px;
-  filter: brightness(1.5) contrast(1.2);
-  animation: flicker 2.5s infinite, glow 1.5s infinite alternate;
-}
-
-/* Flicker animation */
-@keyframes flicker {
-  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
-    opacity: 1;
-  }
-  20%, 22%, 24%, 55% {
-    opacity: 0.4;
-  }
-}
-
-/* Neon Glow animation */
-@keyframes glow {
-  from {
-    filter: drop-shadow(0 0 5px #00faff) drop-shadow(0 0 10px #00faff);
-  }
-  to {
-    filter: drop-shadow(0 0 15px #ff00ff) drop-shadow(0 0 25px #ff00ff);
-  }
-}
-</style>
+    <p>Street. Gym. MMA. More than clothing – it's identity.</p>
+  </section>
 
   <!-- Mission -->
   <section id="mission">
     <h2>Our Mission</h2>
     <p style="text-align:center; max-width:600px; margin:auto;">
-      Warrior Lifestyle is built for fighters, dreamers, and those who refuse to quit. 
-      It’s not just fashion — it’s a way of life.
+      Warrior Lifestyle is built for fighters, dreamers, and those who refuse to quit.
+      It’s not just fashion – it’s a way of life.
     </p>
   </section>
 
   <!-- Shop -->
   <section id="shop">
     <h2>Our Products</h2>
-    <div class="products">
-      <div class="product-card">
-        <img src="https://raw.githubusercontent.com/warriorlifestyleofficial/The.WarriorCode/main/boxing-shorts1.png" alt="Boxing Shorts 1">
-        <h3>Boxing Shorts 1</h3>
-        <p class="price">R699</p>
-        <a href="#" class="buy-button">Buy Now</a>
-      </div>
-      <div class="product-card">
-        <img src="https://raw.githubusercontent.com/warriorlifestyleofficial/The.WarriorCode/main/boxing-shorts2.png" alt="Boxing Shorts 2">
-        <h3>Boxing Shorts 2</h3>
-        <p class="price">R699</p>
-        <a href="#" class="buy-button">Buy Now</a>
-      </div>
-      <div class="product-card">
-        <img src="https://raw.githubusercontent.com/warriorlifestyleofficial/The.WarriorCode/main/boxing-shorts3.png" alt="Boxing Shorts 3">
-        <h3>Boxing Shorts 3</h3>
-        <p class="price">R699</p>
-        <a href="#" class="buy-button">Buy Now</a>
-      </div>
-      <div class="product-card">
-        <img src="https://raw.githubusercontent.com/warriorlifestyleofficial/The.WarriorCode/main/boxing-shorts4.png" alt="Boxing Shorts 4">
-        <h3>Boxing Shorts 4</h3>
-        <p class="price">R750</p>
-        <a href="#" class="buy-button">Buy Now</a>
-      </div>
-    </div>
+    <!-- keep your product cards here -->
   </section>
 
   <!-- Contact -->
@@ -270,5 +147,38 @@
     <p>© 2025 Warrior Lifestyle. All Rights Reserved.</p>
   </footer>
 
+  <!-- Matrix Effect + Sound -->
+  <script>
+    // Matrix Background
+    const canvas = document.getElementById("matrix-bg");
+    const ctx = canvas.getContext("2d");
+    canvas.height = window.innerHeight;
+    canvas.width = window.innerWidth;
+    const letters = "01";
+    const drops = Array(Math.floor(canvas.width / 20)).fill(1);
+    function drawMatrix() {
+      ctx.fillStyle = "rgba(0,0,0,0.05)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = "#0F0";
+      ctx.font = "15px monospace";
+      drops.forEach((y, i) => {
+        const text = letters[Math.floor(Math.random() * letters.length)];
+        const x = i * 20;
+        ctx.fillText(text, x, y * 20);
+        if (y * 20 > canvas.height && Math.random() > 0.975) drops[i] = 0;
+        drops[i]++;
+      });
+    }
+    setInterval(drawMatrix, 50);
+
+    // Sound Effects
+    function playClick() {
+      const audio = new Audio("https://actions.google.com/sounds/v1/cartoon/wood_plank_flicks.ogg");
+      audio.play();
+    }
+    document.querySelectorAll("a, button").forEach(el => {
+      el.addEventListener("click", playClick);
+    });
+  </script>
 </body>
 </html>
