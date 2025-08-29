@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -5,17 +6,17 @@
   <title>Warrior Lifestyle</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
       margin: 0;
-      padding: 0;
+      font-family: 'Arial Black', sans-serif;
       background-color: #111;
       color: #fff;
-      text-align: center;
     }
 
+    /* Navigation */
     nav {
       background: #000;
-      padding: 15px;
+      padding: 15px 20px;
+      text-align: center;
       position: sticky;
       top: 0;
       z-index: 1000;
@@ -25,9 +26,11 @@
       list-style: none;
       margin: 0;
       padding: 0;
-      display: flex;
-      justify-content: center;
-      gap: 20px;
+    }
+
+    nav ul li {
+      display: inline;
+      margin: 0 20px;
     }
 
     nav ul li a {
@@ -35,50 +38,93 @@
       text-decoration: none;
       font-weight: bold;
       font-size: 18px;
-      transition: 0.3s;
+      transition: color 0.3s;
     }
 
     nav ul li a:hover {
       color: red;
     }
 
-    h1, h2 {
-      margin: 20px 0;
+    /* Hero Section */
+    .hero {
+      height: 90vh;
+      background: url('https://raw.githubusercontent.com/warriorlifestyleofficial/The.WarriorCode/main/boxing-shorts1.png') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      flex-direction: column;
     }
 
-    section {
-      padding: 40px 20px;
+    .hero h1 {
+      font-size: 50px;
+      text-shadow: 2px 2px 10px black;
+      color: red;
+      animation: fadeInDown 1s ease-out;
+    }
+
+    .hero p {
+      font-size: 20px;
+      max-width: 600px;
+      margin: 20px auto;
+      color: #ddd;
+      animation: fadeInUp 1.2s ease-out;
+    }
+
+    /* Section Titles */
+    h2 {
+      text-align: center;
+      margin-top: 60px;
+      font-size: 36px;
+      color: red;
+    }
+
+    /* Product Grid */
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 40px;
     }
 
     .product-card {
-      background: #1a1a1a;
-      margin: 20px auto;
-      padding: 20px;
-      border-radius: 12px;
-      width: 300px;
-      box-shadow: 0px 4px 10px rgba(0,0,0,0.6);
+      background: #222;
+      border-radius: 15px;
+      overflow: hidden;
+      text-align: center;
+      padding-bottom: 20px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .product-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0px 5px 20px rgba(255, 0, 0, 0.5);
     }
 
     .product-card img {
       width: 100%;
-      border-radius: 10px;
+      height: auto;
+    }
+
+    .product-card h3 {
+      margin: 15px 0 5px;
+      font-size: 20px;
     }
 
     .price {
       color: red;
+      font-size: 18px;
       font-weight: bold;
-      font-size: 20px;
     }
 
     .buy-button {
       display: inline-block;
-      margin-top: 10px;
-      padding: 10px 20px;
       background: red;
       color: #fff;
-      text-decoration: none;
+      padding: 10px 20px;
+      margin-top: 10px;
       border-radius: 5px;
-      font-weight: bold;
+      text-decoration: none;
       transition: background 0.3s;
     }
 
@@ -86,11 +132,28 @@
       background: darkred;
     }
 
+    /* Footer */
     footer {
+      text-align: center;
+      padding: 20px;
       background: #000;
-      padding: 15px;
       margin-top: 40px;
-      font-size: 14px;
+    }
+
+    footer p {
+      margin: 0;
+      color: #888;
+    }
+
+    /* Animations */
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
@@ -107,62 +170,61 @@
   </nav>
 
   <!-- Hero -->
-  <header id="home">
-    <h1>Welcome to Warrior Lifestyle</h1>
-  </header>
+  <section class="hero" id="home">
+    <h1>Warrior Lifestyle</h1>
+    <p>Street. Gym. MMA. More than clothing — it’s identity.</p>
+  </section>
 
-  <!-- Mission Section -->
+  <!-- Mission -->
   <section id="mission">
     <h2>Our Mission</h2>
-    <p>Street. Gym. MMA. Warrior Lifestyle is more than clothing – it's identity.</p>
+    <p style="text-align:center; max-width:600px; margin:auto;">
+      Warrior Lifestyle is built for fighters, dreamers, and those who refuse to quit. 
+      It’s not just fashion — it’s a way of life.
+    </p>
   </section>
 
-  <!-- Shop Section -->
+  <!-- Shop -->
   <section id="shop">
     <h2>Our Products</h2>
-
-    <!-- Product Card 1 -->
-    <div class="product-card">
-      <img src="https://raw.githubusercontent.com/warriorlifestyleofficial/The.WarriorCode/refs/heads/main/boxing-shorts1.png" alt="Boxing Shorts 1">
-      <h3>Boxing Shorts 1</h3>
-      <p class="price">R699</p>
-      <a href="https://yourshopifylink.com/products/boxing-shorts-1" class="buy-button">Buy Now</a>
-    </div>
-
-    <!-- Product Card 2 -->
-    <div class="product-card">
-      <img src="https://raw.githubusercontent.com/warriorlifestyleofficial/The.WarriorCode/refs/heads/main/boxing-shorts2.png" alt="Boxing Shorts 2">
-      <h3>Boxing Shorts 2</h3>
-      <p class="price">R699</p>
-      <a href="https://yourshopifylink.com/products/boxing-shorts-2" class="buy-button">Buy Now</a>
-    </div>
-
-    <!-- Product Card 3 -->
-    <div class="product-card">
-      <img src="https://raw.githubusercontent.com/warriorlifestyleofficial/The.WarriorCode/refs/heads/main/boxing-shorts3.png" alt="Boxing Shorts 3">
-      <h3>Boxing Shorts 3</h3>
-      <p class="price">R699</p>
-      <a href="https://yourshopifylink.com/products/boxing-shorts-3" class="buy-button">Buy Now</a>
-    </div>
-
-    <!-- Product Card 4 -->
-    <div class="product-card">
-      <img src="https://raw.githubusercontent.com/warriorlifestyleofficial/The.WarriorCode/refs/heads/main/boxing-shorts4.png" alt="Boxing Shorts 4">
-      <h3>Boxing Shorts 4</h3>
-      <p class="price">R750</p>
-      <a href="https://yourshopifylink.com/products/boxing-shorts-4" class="buy-button">Buy Now</a>
+    <div class="products">
+      <div class="product-card">
+        <img src="https://raw.githubusercontent.com/warriorlifestyleofficial/The.WarriorCode/main/boxing-shorts1.png" alt="Boxing Shorts 1">
+        <h3>Boxing Shorts 1</h3>
+        <p class="price">R699</p>
+        <a href="#" class="buy-button">Buy Now</a>
+      </div>
+      <div class="product-card">
+        <img src="https://raw.githubusercontent.com/warriorlifestyleofficial/The.WarriorCode/main/boxing-shorts2.png" alt="Boxing Shorts 2">
+        <h3>Boxing Shorts 2</h3>
+        <p class="price">R699</p>
+        <a href="#" class="buy-button">Buy Now</a>
+      </div>
+      <div class="product-card">
+        <img src="https://raw.githubusercontent.com/warriorlifestyleofficial/The.WarriorCode/main/boxing-shorts3.png" alt="Boxing Shorts 3">
+        <h3>Boxing Shorts 3</h3>
+        <p class="price">R699</p>
+        <a href="#" class="buy-button">Buy Now</a>
+      </div>
+      <div class="product-card">
+        <img src="https://raw.githubusercontent.com/warriorlifestyleofficial/The.WarriorCode/main/boxing-shorts4.png" alt="Boxing Shorts 4">
+        <h3>Boxing Shorts 4</h3>
+        <p class="price">R750</p>
+        <a href="#" class="buy-button">Buy Now</a>
+      </div>
     </div>
   </section>
 
-  <!-- Contact Section -->
+  <!-- Contact -->
   <section id="contact">
     <h2>Contact</h2>
-    <p>Email: support@warriorlifestyle.com</p>
+    <p style="text-align:center;">Email: support@warriorlifestyle.com</p>
   </section>
 
+  <!-- Footer -->
   <footer>
-    <p>© 2025 Warrior Lifestyle. All rights reserved.</p>
+    <p>© 2025 Warrior Lifestyle. All Rights Reserved.</p>
   </footer>
 
 </body>
-    </html>
+</html>
