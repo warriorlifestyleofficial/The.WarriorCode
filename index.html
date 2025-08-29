@@ -10,476 +10,84 @@
 
 <style>
 :root{
-  --bg:#0b0b0b;
-  --bg-2:#121212;
-  --card:#171717;
-  --ink:#f2f2f2;
-  --muted:#a7a7a7;
-  --gold:#c9a227;
-  --gold-2:#e2c25f;
-  --accent:#1e90ff;   /* switch to #e01e37 for red CTA if you prefer */
-  --shadow:0 12px 40px rgba(0,0,0,.45);
-  --radius:18px;
+  --bg:#0b0b0b; --bg-2:#121212; --card:#171717; --ink:#f2f2f2; --muted:#a7a7a7;
+  --gold:#c9a227; --gold-2:#e2c25f; --accent:#1e90ff; /* set to #e01e37 for red CTA */
+  --shadow:0 12px 40px rgba(0,0,0,.45); --radius:18px;
+}
+*{box-sizing:border-box} html,body{height:100%}
+body{margin:0;background:linear-gradient(180deg,var(--bg),#000);color:var(--ink);
+  font-family:Montserrat,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased}
+
+/* ===== CINEMATIC INTRO (POV FIGHTER) ===== */
+#cinema{
+  position:fixed; inset:0; background:#000; z-index:2000; display:grid; place-items:center; overflow:hidden;
+}
+.c-stage{position:relative; width:100%; height:100%}
+.c-smoke{
+  position:absolute; inset:-20%; background:
+  radial-gradient(60vw 60vw at 20% 20%, rgba(255,255,255,.04), transparent 60%),
+  radial-gradient(60vw 60vw at 80% 20%, rgba(255,255,255,.04), transparent 60%);
+  filter:blur(2px); animation:smoke 14s linear infinite; opacity:.5
+}
+@keyframes smoke {0%{transform:translateX(0)}100%{transform:translateX(-5%)}}
+.c-ring{
+  position:absolute; inset:0; background:
+  radial-gradient(120vw 120vw at 50% 90%, rgba(0,0,0,.7), transparent 45%),
+  radial-gradient(50vw 20vw at 50% 98%, rgba(255,255,255,.05), transparent 60%),
+  conic-gradient(from 0deg, rgba(255,255,255,.03), rgba(0,0,0,0) 40%, rgba(255,255,255,.03), rgba(0,0,0,0) 80%);
+  mix-blend-mode:screen;
+}
+.c-opponent{
+  position:absolute; bottom:14%; left:50%; width:40vmin; height:56vmin; transform:translateX(-50%);
+  background: radial-gradient(20vmin 24vmin at 50% 15%, #111, #000 60%),
+             radial-gradient(12vmin 10vmin at 50% 50%, #0a0a0a, #000 70%);
+  border-radius:40% 40% 10% 10%/48% 48% 20% 20%;
+  filter:drop-shadow(0 30px 60px rgba(0,0,0,.9)); opacity:.88;
+}
+.c-glove{
+  position:absolute; bottom:18%; left:30%; width:16vmin; height:12vmin; border-radius:50%;
+  background:radial-gradient(circle at 40% 30%, #222, #000); transform-origin:70% 40%;
+  animation:miss 2.7s ease-in forwards;
+}
+.c-glove.right{left:auto; right:30%; animation:hit 4.1s ease-in forwards}
+@keyframes miss{
+  0%{transform:translate(0,0) rotate(-8deg)}
+  30%{transform:translate(18vmin, -2vmin) rotate(12deg)}
+  55%{transform:translate(26vmin,0) rotate(6deg)}
+  100%{transform:translate(0,0) rotate(-8deg)}
+}
+@keyframes hit{
+  0%{transform:translate(0,0) rotate(8deg)}
+  40%{transform:translate(-10vmin,-3vmin) rotate(-6deg)}
+  85%{transform:translate(-28vmin,0) rotate(-2deg)}
+  100%{transform:translate(12vmin,2vmin) rotate(16deg)}
+}
+.c-vig{position:absolute; inset:0; box-shadow:inset 0 0 160px rgba(0,0,0,.95);}
+.c-impact{position:absolute; inset:0; background:radial-gradient(closest-side, rgba(255,255,255,.0), rgba(255,255,255,.0)); pointer-events:none}
+.c-text{position:absolute; top:6%; width:100%; text-align:center; font-family:Oswald; letter-spacing:.3em; color:#cfcfcf; font-size:12px}
+.c-skip{position:absolute; right:14px; top:14px; z-index:10; background:#0f0f0f; border:1px solid rgba(255,255,255,.2); color:#eee; padding:8px 12px; border-radius:10px; cursor:pointer}
+
+/* flash & shake when hit */
+body.hit .c-impact{animation:flash .34s ease}
+@keyframes flash{0%{background:radial-gradient(closest-side, rgba(255,255,255,.85), rgba(255,255,255,.0) 65%)}100%{background:transparent}}
+body.hit{animation:shake .38s cubic-bezier(.36,.07,.19,.97) both}
+@keyframes shake{
+  10%,90%{transform:translate3d(-1px,0,0)}
+  20%,80%{transform:translate3d(2px,0,0)}
+  30%,50%,70%{transform:translate3d(-4px,0,0)}
+  40%,60%{transform:translate3d(4px,0,0)}
 }
 
-*{box-sizing:border-box}
-html,body{height:100%}
-body{
-  margin:0;
-  background:linear-gradient(180deg,var(--bg),#000);
-  color:var(--ink);
-  font-family:Montserrat,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial,sans-serif;
-  line-height:1.55;
-  -webkit-font-smoothing:antialiased;
-  text-rendering:optimizeLegibility;
-}
-
-/* ===== NAV ===== */
-nav{
-  position:sticky; top:0; z-index:999;
-  backdrop-filter:saturate(160%) blur(8px);
-  background:linear-gradient(180deg,rgba(0,0,0,.85),rgba(0,0,0,.55));
-  border-bottom:1px solid rgba(255,255,255,.06);
-}
-.nav-wrap{
-  max-width:1200px; margin:auto;
-  display:flex; align-items:center; justify-content:space-between;
-  padding:14px 20px;
-}
-.brand{
-  display:flex; align-items:center; gap:12px; text-decoration:none;
-}
+/* ===== NAV (unchanged) ===== */
+nav{position:sticky; top:0; z-index:999; backdrop-filter:saturate(160%) blur(8px);
+  background:linear-gradient(180deg,rgba(0,0,0,.85),rgba(0,0,0,.55)); border-bottom:1px solid rgba(255,255,255,.06)}
+.nav-wrap{max-width:1200px; margin:auto; display:flex; align-items:center; justify-content:space-between; padding:14px 20px}
+.brand{display:flex; align-items:center; gap:12px; text-decoration:none}
 .brand img{height:36px; width:36px; object-fit:contain; filter:drop-shadow(0 0 12px rgba(255,255,255,.08))}
-.brand span{
-  font-family:Oswald, sans-serif; letter-spacing:.5px;
-  font-size:22px; font-weight:700;
-  background:linear-gradient(90deg,var(--gold),var(--gold-2));
-  -webkit-background-clip:text; background-clip:text; color:transparent;
-}
+.brand span{font-family:Oswald; letter-spacing:.5px; font-size:22px; font-weight:700;
+  background:linear-gradient(90deg,var(--gold),var(--gold-2)); -webkit-background-clip:text; background-clip:text; color:transparent}
 .nav-links{display:flex; gap:24px; align-items:center}
-.nav-links a{
-  text-decoration:none; color:#eaeaea; font-weight:600; letter-spacing:.25px;
-  position:relative; padding:8px 4px; transition:.25s;
-}
-.nav-links a:after{
-  content:""; position:absolute; left:0; right:0; bottom:-6px; height:2px;
-  background:linear-gradient(90deg,var(--gold),transparent);
-  transform:scaleX(0); transform-origin:left; transition:.25s;
-}
-.nav-links a:hover{color:#fff}
-.nav-links a:hover:after{transform:scaleX(1)}
-
-.nav-cta{
-  padding:10px 14px; border-radius:999px; font-weight:700; letter-spacing:.3px;
-  background:linear-gradient(90deg,var(--accent),#5fb3ff);
-  color:#00101f; text-decoration:none; box-shadow:0 10px 24px rgba(30,144,255,.25);
-  transition:transform .15s ease, filter .15s ease;
-}
-.nav-cta:hover{transform:translateY(-1px); filter:saturate(120%)}
-
-/* ===== HERO ===== */
-.hero{
-  position:relative; isolation:isolate; overflow:hidden;
-  min-height:82vh; display:grid; place-items:center;
-}
-.hero::before{
-  /* parallax backdrop (swap image if you like) */
-  content:""; position:absolute; inset:-10%;
-  background:
-    radial-gradient(60vw 60vw at 20% 20%, rgba(201,162,39,.07), transparent 60%),
-    radial-gradient(60vw 60vw at 80% 20%, rgba(30,144,255,.08), transparent 60%),
-    url('https://images.unsplash.com/photo-1544911060-5b7696cde2eb?q=80&w=1400&auto=format&fit=crop') center/cover no-repeat;
-  transform:translateZ(0);
-  filter:grayscale(.2) contrast(1.05) brightness(.7);
-  z-index:-2;
-}
-.hero::after{
-  content:""; position:absolute; inset:0;
-  background:radial-gradient(60% 50% at 50% 60%, rgba(0,0,0,.0) 0, rgba(0,0,0,.65) 60%, rgba(0,0,0,.9) 100%);
-  z-index:-1;
-}
-.hero-inner{ text-align:center; padding:80px 20px; max-width:980px; }
-.kicker{
-  font-weight:800; letter-spacing:.4em; text-transform:uppercase; color:#bbb; font-size:12px;
-}
-.hero h1{
-  font-family:Oswald, sans-serif; font-size: clamp(38px, 7vw, 84px); margin:14px 0 8px;
-  line-height:1.02; letter-spacing:.5px;
-  text-shadow:0 14px 40px rgba(0,0,0,.6);
-}
-.hero h1 .glow{
-  background:linear-gradient(90deg,#fff,var(--gold-2)); -webkit-background-clip:text; color:transparent;
-  filter:drop-shadow(0 0 12px rgba(226,194,95,.22));
-}
-.hero p.tag{
-  max-width:720px; margin:12px auto 26px; color:#dcdcdc; font-size:clamp(15px,2.5vw,18px)
-}
-.cta-row{display:flex; gap:14px; justify-content:center; flex-wrap:wrap}
-.btn{
-  border:none; cursor:pointer; text-decoration:none; font-weight:800; letter-spacing:.4px;
-  padding:14px 22px; border-radius:12px; transition:.2s; display:inline-flex; align-items:center; gap:10px;
-}
-.btn-primary{
-  background:linear-gradient(90deg,var(--accent),#69b8ff); color:#061018;
-  box-shadow:var(--shadow);
-}
-.btn-ghost{
-  background:transparent; color:#e8e8e8; border:1px solid rgba(255,255,255,.14)
-}
-.btn:hover{transform:translateY(-2px)}
-
-/* ===== SECTIONS ===== */
-.section{padding:80px 20px}
-.wrap{max-width:1200px; margin:auto}
-
-/* Featured Collections */
-.collections{
-  display:grid; grid-template-columns:repeat(12,1fr); gap:18px;
-}
-.collection{
-  grid-column:span 6; position:relative; border-radius:var(--radius); overflow:hidden;
-  background:var(--card); min-height:260px; box-shadow:var(--shadow);
-}
-.collection.tall{min-height:380px}
-.collection img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:.85; transition:.35s}
-.collection::after{
-  content: ""; position:absolute; inset:0;
-  background:linear-gradient(180deg, rgba(0,0,0,.1), rgba(0,0,0,.75));
-}
-.collection:hover img{transform:scale(1.06)}
-.collection .label{
-  position:absolute; inset:auto 16px 16px 16px; z-index:2;
-}
-.collection .label h3{
-  margin:0 0 6px; font-family:Oswald; font-size:28px; letter-spacing:.5px;
-}
-.collection .label a{
-  display:inline-block; margin-top:6px; color:#061018; text-decoration:none; font-weight:800;
-  background:linear-gradient(90deg,var(--gold),var(--gold-2)); padding:10px 14px; border-radius:10px;
-}
-
-/* Best Sellers / Shop Grid */
-.grid{
-  display:grid; gap:18px;
-  grid-template-columns:repeat(auto-fit, minmax(220px,1fr));
-}
-.card{
-  background:var(--card); border-radius:16px; overflow:hidden; box-shadow:var(--shadow);
-  transition:transform .18s ease, box-shadow .18s ease; position:relative;
-}
-.card:hover{ transform:translateY(-4px); box-shadow:0 16px 44px rgba(0,0,0,.6)}
-.card .thumb{
-  position:relative; overflow:hidden; aspect-ratio: 4 / 5; background:#0f0f0f;
-}
-.card .thumb img{
-  width:100%; height:100%; object-fit:cover; transition:transform .6s ease;
-}
-.card:hover .thumb img{ transform:scale(1.07)}
-.badge{
-  position:absolute; top:12px; left:12px; background:linear-gradient(90deg,var(--gold),var(--gold-2)); color:#111;
-  font-weight:800; padding:6px 10px; border-radius:999px; font-size:12px
-}
-.card .body{ padding:14px 14px 16px }
-.card h4{ margin:6px 0 4px; font-size:16px; font-weight:800; letter-spacing:.3px }
-.price{ color:var(--gold-2); font-weight:800; letter-spacing:.5px }
-.small{ color:var(--muted); font-size:12px }
-
-.pill{
-  display:inline-flex; align-items:center; gap:8px; padding:9px 12px; border-radius:999px;
-  border:1px solid rgba(255,255,255,.12); color:#eaeaea; cursor:pointer; user-select:none;
-}
-.controls{ display:flex; gap:10px; flex-wrap:wrap; margin:20px 0 32px }
-
-.card .actions{
-  display:flex; gap:10px; margin-top:12px;
-}
-.quick, .buy{
-  flex:1; text-align:center; padding:10px 12px; border-radius:10px; border:1px solid rgba(255,255,255,.12);
-  color:#fff; text-decoration:none; font-weight:800; letter-spacing:.3px; transition:.18s
-}
-.buy{ background:linear-gradient(90deg,var(--accent),#6dc0ff); color:#061018; border:none }
-.quick:hover, .buy:hover{ transform:translateY(-2px) }
-
-/* Testimonials */
-.testis{ display:grid; gap:16px; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)) }
-.quote{
-  background:linear-gradient(180deg,#141414,#0f0f0f); border:1px solid rgba(255,255,255,.06);
-  border-radius:16px; padding:18px; box-shadow:var(--shadow)
-}
-.quote p{ margin:0 0 10px }
-.quote .who{ color:var(--muted); font-size:13px }
-
-/* Parallax band */
-.band{
-  position:relative; min-height:54vh; display:grid; place-items:center; text-align:center; overflow:hidden;
-}
-.band img{ position:absolute; inset:0; width:100%; height:110%; object-fit:cover; filter:brightness(.55) contrast(1.05); transform:translateY(var(--y,0px)); will-change:transform }
-.band h2{
-  z-index:2; font-family:Oswald; font-size: clamp(30px,6vw,60px); margin:0;
-  text-shadow:0 14px 40px rgba(0,0,0,.6)
-}
-
-/* About */
-.about{
-  display:grid; gap:26px; grid-template-columns: 1.2fr 1fr; align-items:center;
-}
-.about img{width:100%; border-radius:16px; box-shadow:var(--shadow); object-fit:cover}
-
-/* Footer */
-footer{ padding:32px 20px; color:#999; border-top:1px solid rgba(255,255,255,.06); text-align:center}
-
-/* Modal */
-.modal{
-  position:fixed; inset:0; display:none; place-items:center; background:rgba(0,0,0,.6); z-index:1000;
-}
-.modal.open{ display:grid }
-.modal-card{
-  background:#0f0f0f; border:1px solid rgba(255,255,255,.08);
-  width:min(940px,92vw); border-radius:18px; overflow:hidden; box-shadow:0 40px 70px rgba(0,0,0,.6)
-}
-.modal-body{ display:grid; grid-template-columns:1.1fr 1fr }
-.modal-body img{ width:100%; height:100%; object-fit:cover }
-.modal-pad{ padding:20px }
-.modal h3{ margin:10px 0 6px; font-family:Oswald }
-.x{ position:absolute; top:14px; right:14px; background:#111; border:1px solid rgba(255,255,255,.15); color:#ddd; border-radius:10px; padding:8px 10px; cursor:pointer }
-
-/* Exit intent popup */
-.pop{
-  position:fixed; inset:auto 18px 18px auto; width:360px; max-width:94vw;
-  background:linear-gradient(180deg,#141414,#0d0d0d); border:1px solid rgba(255,255,255,.12);
-  border-radius:16px; padding:18px; z-index:1200; box-shadow:0 30px 60px rgba(0,0,0,.6); display:none;
-}
-.pop.show{ display:block }
-.pop h4{ margin:0 0 8px; font-family:Oswald }
-.pop input{ width:100%; padding:12px 12px; border-radius:10px; border:1px solid rgba(255,255,255,.12); background:#0b0b0b; color:#fff; margin-top:8px }
-.pop .row{ display:flex; gap:10px; margin-top:10px }
-.pop .row .btn{ flex:1 }
-
-/* Responsive tweaks */
-@media (max-width:920px){
-  .collections .collection{ grid-column:span 12 }
-  .about{ grid-template-columns:1fr }
-  .modal-body{ grid-template-columns:1fr }
-}
-</style>
-</head>
-<body>
-
-<!-- ===== NAV ===== -->
-<nav>
-  <div class="nav-wrap">
-    <a class="brand" href="#home">
-      <img src="logo.jpg" alt="Warrior Lifestyle Logo"/>
-      <span>WARRIOR LIFESTYLE</span>
-    </a>
-    <div class="nav-links">
-      <a href="#shop">Shop</a>
-      <a href="#collections">Collections</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
-      <a class="nav-cta" href="#shop">Shop Now</a>
-    </div>
-  </div>
-</nav>
-
-<!-- ===== HERO ===== -->
-<header id="home" class="hero">
-  <div class="hero-inner">
-    <div class="kicker">WEAR YOUR MINDSET</div>
-    <h1><span class="glow">Live the Lifestyle.</span> Fight for Everything.</h1>
-    <p class="tag">Street. Gym. MMA. Warrior Lifestyle is more than clothing — it’s identity. Premium fightwear built for pressure, power and purpose.</p>
-    <div class="cta-row">
-      <a href="#shop" class="btn btn-primary">Shop the Collection</a>
-      <a href="#about" class="btn btn-ghost">Our Mission</a>
-    </div>
-  </div>
-</header>
-
-<!-- ===== FEATURED COLLECTIONS ===== -->
-<section id="collections" class="section">
-  <div class="wrap">
-    <h2 style="font-family:Oswald; font-size:34px; letter-spacing:.5px; margin:0 0 16px;">Featured Collections</h2>
-    <div class="collections">
-      <article class="collection tall">
-        <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=1600&auto=format&fit=crop" alt="Gym Collection"/>
-        <div class="label">
-          <h3>Gym Essentials</h3>
-          <a href="#shop" aria-label="Shop Gym">Shop Now</a>
-        </div>
-      </article>
-      <article class="collection tall">
-        <img src="https://images.unsplash.com/photo-1517433670267-08bbd4be890f?q=80&w=1600&auto=format&fit=crop" alt="Fightwear"/>
-        <div class="label">
-          <h3>MMA / Fightwear</h3>
-          <a href="#shop" aria-label="Shop Fightwear">Shop Now</a>
-        </div>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- ===== PARALLAX BAND ===== -->
-<section class="band">
-  <img src="https://images.unsplash.com/photo-1519677100203-a0e668c92439?q=80&w=1800&auto=format&fit=crop" alt="Training background"/>
-  <h2>Mindset > Everything</h2>
-</section>
-
-<!-- ===== SHOP / BEST SELLERS ===== -->
-<section id="shop" class="section">
-  <div class="wrap">
-    <h2 style="font-family:Oswald; font-size:34px; letter-spacing:.5px; margin:0 0 8px;">Best Sellers</h2>
-    <div class="small">Filter by category, size, and price.</div>
-
-    <div class="controls" aria-label="Filters">
-      <label class="pill"><input type="checkbox" data-filter="category" value="shorts" checked> Shorts</label>
-      <label class="pill"><input type="checkbox" data-filter="category" value="hoodie"> Hoodies</label>
-      <label class="pill"><input type="checkbox" data-filter="category" value="tee"> Tees</label>
-
-      <label class="pill"><input type="checkbox" data-filter="size" value="S"> S</label>
-      <label class="pill"><input type="checkbox" data-filter="size" value="M" checked> M</label>
-      <label class="pill"><input type="checkbox" data-filter="size" value="L" checked> L</label>
-      <label class="pill"><input type="checkbox" data-filter="size" value="XL"> XL</label>
-
-      <label class="pill">Max R <input id="priceMax" type="number" min="0" step="50" value="1200" style="width:90px; background:#0b0b0b; color:#fff; border:1px solid rgba(255,255,255,.15); border-radius:8px; padding:6px 8px; margin-left:6px"></label>
-      <button id="reset" class="pill" style="background:#0d0d0d">Reset</button>
-    </div>
-
-    <div id="grid" class="grid" aria-live="polite">
-
-      <!-- Product 1 -->
-      <article class="card" data-category="shorts" data-sizes="S,M,L,XL" data-price="699">
-        <div class="thumb">
-          <span class="badge">New</span>
-          <img src="https://raw.githubusercontent.com/warriorlifestyleofficial/The.WarriorCode/refs/heads/main/boxing-shorts1.png" alt="Boxing Shorts 1"/>
-        </div>
-        <div class="body">
-          <h4>Boxing Shorts 1</h4>
-          <div class="price">R699</div>
-          <div class="small">S–XL</div>
-          <div class="actions">
-            <a href="#" class="quick" data-modal="Boxing Shorts 1">Quick View</a>
-            <a class="buy" href="#" data-shopify="https://YOUR-SHOP.myshopify.com/products/shorts-1">Buy</a>
-          </div>
-        </div>
-      </article>
-
-      <!-- Product 2 -->
-      <article class="card" data-category="shorts" data-sizes="S,M,L" data-price="699">
-        <div class="thumb">
-          <img src="https://raw.githubusercontent.com/warriorlifestyleofficial/The.WarriorCode/refs/heads/main/boxing-shorts2.png" alt="Boxing Shorts 2"/>
-        </div>
-        <div class="body">
-          <h4>Boxing Shorts 2</h4>
-          <div class="price">R699</div>
-          <div class="small">S–L</div>
-          <div class="actions">
-            <a href="#" class="quick" data-modal="Boxing Shorts 2">Quick View</a>
-            <a class="buy" href="#" data-shopify="https://YOUR-SHOP.myshopify.com/products/shorts-2">Buy</a>
-          </div>
-        </div>
-      </article>
-
-      <!-- Product 3 -->
-      <article class="card" data-category="shorts" data-sizes="M,L,XL" data-price="699">
-        <div class="thumb">
-          <img src="https://raw.githubusercontent.com/warriorlifestyleofficial/The.WarriorCode/refs/heads/main/boxing-shorts3.png" alt="Boxing Shorts 3"/>
-        </div>
-        <div class="body">
-          <h4>Boxing Shorts 3</h4>
-          <div class="price">R699</div>
-          <div class="small">M–XL</div>
-          <div class="actions">
-            <a href="#" class="quick" data-modal="Boxing Shorts 3">Quick View</a>
-            <a class="buy" href="#" data-shopify="https://YOUR-SHOP.myshopify.com/products/shorts-3">Buy</a>
-          </div>
-        </div>
-      </article>
-
-      <!-- Product 4 -->
-      <article class="card" data-category="shorts" data-sizes="S,M,L,XL" data-price="750">
-        <div class="thumb">
-          <img src="https://raw.githubusercontent.com/warriorlifestyleofficial/The.WarriorCode/refs/heads/main/boxing-shorts4.png" alt="Boxing Shorts 4"/>
-        </div>
-        <div class="body">
-          <h4>Boxing Shorts 4</h4>
-          <div class="price">R750</div>
-          <div class="small">S–XL</div>
-          <div class="actions">
-            <a href="#" class="quick" data-modal="Boxing Shorts 4">Quick View</a>
-            <a class="buy" href="#" data-shopify="https://YOUR-SHOP.myshopify.com/products/shorts-4">Buy</a>
-          </div>
-        </div>
-      </article>
-
-      <!-- Example hoodie/tee placeholders (swap images) -->
-      <article class="card" data-category="hoodie" data-sizes="M,L,XL" data-price="899">
-        <div class="thumb">
-          <span class="badge">Bestseller</span>
-          <img src="https://images.unsplash.com/photo-1520975954732-35dd222996f2?q=80&w=1200&auto=format&fit=crop" alt="Warrior Hoodie"/>
-        </div>
-        <div class="body">
-          <h4>Warrior Hoodie – Black/Gold</h4>
-          <div class="price">R899</div>
-          <div class="small">M–XL</div>
-          <div class="actions">
-            <a href="#" class="quick" data-modal="Warrior Hoodie">Quick View</a>
-            <a class="buy" href="#" data-shopify="https://YOUR-SHOP.myshopify.com/products/hoodie-gold">Buy</a>
-          </div>
-        </div>
-      </article>
-
-      <article class="card" data-category="tee" data-sizes="S,M,L,XL" data-price="399">
-        <div class="thumb">
-          <img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?q=80&w=1200&auto=format&fit=crop" alt="Mindset Tee"/>
-        </div>
-        <div class="body">
-          <h4>Mindset Tee</h4>
-          <div class="price">R399</div>
-          <div class="small">S–XL</div>
-          <div class="actions">
-            <a href="#" class="quick" data-modal="Mindset Tee">Quick View</a>
-            <a class="buy" href="#" data-shopify="https://YOUR-SHOP.myshopify.com/products/mindset-tee">Buy</a>
-          </div>
-        </div>
-      </article>
-
-    </div>
-  </div>
-</section>
-
-<!-- ===== PARALLAX BAND 2 ===== -->
-<section class="band">
-  <img src="https://images.unsplash.com/photo-1562774053-701939374585?q=80&w=1800&auto=format&fit=crop" alt="Sparring background"/>
-  <h2>Pressure Creates Warriors</h2>
-</section>
-
-<!-- ===== TESTIMONIALS ===== -->
-<section class="section">
-  <div class="wrap">
-    <h2 style="font-family:Oswald; font-size:34px; letter-spacing:.5px; margin:0 0 16px;">What Fighters Say</h2>
-    <div class="testis">
-      <div class="quote"><p>“Lightweight, tough, and the fit is perfect for kicks.”</p><div class="who">— Liam • Muay Thai</div></div>
-      <div class="quote"><p>“The gold details hit different in the ring.”</p><div class="who">— Nandi • Amateur Boxer</div></div>
-      <div class="quote"><p>“Quality on par with premium brands, legit aesthetic.”</p><div class="who">— Zubair • MMA</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== ABOUT ===== -->
-<section id="about" class="section">
-  <div class="wrap about">
-    <img src="https://images.unsplash.com/photo-1521417531070-04f94bb22c4a?q=80&w=1600&auto=format&fit=crop" alt="Training lifestyle">
-    <div>
-      <h2 style="font-family:Oswald; font-size:34px; letter-spacing:.5px; margin:0 0 10px;">Our Mission</h2>
-      <p>Warrior Lifestyle is built for fighters, dreamers and those who refuse to quit. We design premium essentials that move with you under pressure. It’s not just fashion — it’s a way of life.</p>
-      <p class="small">Tag us on IG: <strong>@warriorlifestyle</strong> • #WearYourMindset</p>
-      <a href="#shop" class="btn btn-primary">Shop Best Sellers</a>
-    </div>
-  </div>
-</section>
-
-<!-- ===== CONTACT / FOOTER ===== -->
-<section id="contact" class="section" style="padding-top:40px">
-  <div class="wrap">
-    <h2 style="font-family:Oswald; font-size:34px; letter-spacing:.5px; margin:0 0 10px;">Contact</h2>
-    <p>
+.nav-links a{text-decoration:none; color:#eaeaea; font-weight:600; letter-spacing:.25px; position:relative; padding:8px 4px; transition:.25s}
+.nav-links a:after{content:""; position:absolute; left:0; right:0; bottom:-6px; height:2px; background:linear-gradient(90deg,var(--gold),transparent); transform:scaleX(0); transform-origin:left; transition:.25s}
+.nav-links a:hover{color:#fff}.nav-links a:hover:after{transform:scaleX(1)}
+.nav-cta{padding:10px 14px; border-radius:999px; font-weight:700; letter-spacing:.3px; background:linear-gradient(90deg,var(--
