@@ -169,14 +169,44 @@
     </ul>
   </nav>
 
-  <section class="hero" id="home">
+  <!-- Hero -->
+<section class="hero" id="home">
   <div class="hero-content">
-    <img src="https://raw.githubusercontent.com/warriorlifestyleofficial/The.WarriorCode/main/logo.jpg" 
-         alt="Warrior Lifestyle Logo" style="max-width:200px; margin-bottom:20px;">
+    <img src="logo.jpg" alt="Warrior Lifestyle Logo" class="holo-logo">
     <h1>Warrior Lifestyle</h1>
     <p>Street. Gym. MMA. More than clothing – it’s identity.</p>
   </div>
-  </section>
+</section>
+
+<style>
+/* Hologram Logo Effect */
+.holo-logo {
+  max-width: 200px;
+  margin-bottom: 20px;
+  filter: brightness(1.5) contrast(1.2);
+  animation: flicker 2.5s infinite, glow 1.5s infinite alternate;
+}
+
+/* Flicker animation */
+@keyframes flicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+    opacity: 1;
+  }
+  20%, 22%, 24%, 55% {
+    opacity: 0.4;
+  }
+}
+
+/* Neon Glow animation */
+@keyframes glow {
+  from {
+    filter: drop-shadow(0 0 5px #00faff) drop-shadow(0 0 10px #00faff);
+  }
+  to {
+    filter: drop-shadow(0 0 15px #ff00ff) drop-shadow(0 0 25px #ff00ff);
+  }
+}
+</style>
 
   <!-- Mission -->
   <section id="mission">
