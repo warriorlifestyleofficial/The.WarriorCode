@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Contact — Warrior Lifestyle</title>
+  <meta name="description" content="Contact Warrior Lifestyle — email and phone for orders, partnerships, and support."/>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/styles.css"/>
+</head>
+<body>
+
+  <!-- NAV (same) -->
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="/" aria-label="Warrior Lifestyle Home">
+        <img src="../logo.jpg" alt="Warrior Lifestyle Logo">
+        <span class="name">WARRIOR LIFESTYLE</span>
+      </a>
+
+      <button class="menu-btn" aria-label="Open menu" id="menuBtn">☰</button>
+
+      <nav class="links" id="navLinks">
+        <a href="/#shop">Shop</a>
+        <a href="/#about">About</a>
+        <a class="buy-now" href="https://d8bipr-ra.myshopify.com" target="_blank" rel="noopener">Go to Shopify</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- CONTACT CONTENT -->
+  <main class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Contact Us</h2>
+        <p class="muted">Questions, wholesale, or press — we’d love to hear from you.</p>
+      </div>
+
+      <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(280px,1fr));">
+        <!-- Card: Direct -->
+        <article class="panel">
+          <h3>Email & Phone</h3>
+          <p><strong>Email:</strong> <a href="mailto:warriorlifestyle.store@gmail.com">warriorlifestyle.store@gmail.com</a></p>
+          <p><strong>Phone:</strong> 076 562 2628 &nbsp;/&nbsp; 076 944 6432</p>
+          <p><strong>Shopify:</strong> <a href="https://d8bipr-ra.myshopify.com" target="_blank" rel="noopener">d8bipr-ra.myshopify.com</a></p>
+        </article>
+
+        <!-- Card: Quick Form (mailto) -->
+        <article class="panel">
+          <h3>Quick Message</h3>
+          <form action="mailto:warriorlifestyle.store@gmail.com" method="post" enctype="text/plain">
+            <label>Name<br>
+              <input type="text" name="name" required style="width:100%;padding:10px;border:1px solid var(--ring);border-radius:10px;">
+            </label><br><br>
+            <label>Email<br>
+              <input type="email" name="email" required style="width:100%;padding:10px;border:1px solid var(--ring);border-radius:10px;">
+            </label><br><br>
+            <label>Message<br>
+              <textarea name="message" rows="5" required style="width:100%;padding:10px;border:1px solid var(--ring);border-radius:10px;"></textarea>
+            </label><br><br>
+            <button class="buy" type="submit" style="width:100%;">Send</button>
+          </form>
+          <p class="muted" style="margin-top:8px;">This opens your email app to send the message.</p>
+        </article>
+      </div>
+
+      <div class="panel" style="margin-top:16px;">
+        <h3>Open Hours</h3>
+        <p>Mon–Fri: 09:00–18:00  •  Sat: 10:00–14:00  •  Sun: Closed</p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap foot">
+      <div>© <span id="year"></span> Warrior Lifestyle. All rights reserved.</div>
+      <div class="foot-links">
+        <a href="/">Home</a>
+        <a href="/#shop">Shop</a>
+        <a href="https://d8bipr-ra.myshopify.com" target="_blank" rel="noopener">Shopify</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/app.js"></script>
+</body>
+  </html>
