@@ -1,222 +1,179 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>Warrior Lifestyle — Wear Your Mindset</title>
-  <meta name="description" content="Warrior Lifestyle — premium fightwear built for pressure, power and purpose. Opening soon." />
-  <meta name="theme-color" content="#0b0b0b" />
+  <meta name="description" content="Warrior Lifestyle — premium fightwear built for pressure, power and purpose. Street • Gym • MMA."/>
+  <meta name="theme-color" content="#111111"/>
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-
-  <style>
-    :root{
-      --page:#0b0b0b;           /* matte black bg */
-      --ink:#ffffff;            /* primary text (white) */
-      --muted:#b5b5b5;          /* muted text */
-      --panel:#141414;          /* panels */
-      --ring:rgba(255,255,255,.1);
-      --brand:#111;             /* brand dark */
-      --gold:#caa83a;           /* gold accent */
-      --gold-2:#e6cf7a;         /* lighter gold */
-      --cta:#caa83a;            /* CTA gold */
-      --ctaText:#111111;        /* CTA text dark */
-      --radius:16px;
-      --shadow:0 10px 30px rgba(0,0,0,.6);
-    }
-
-    *{box-sizing:border-box; margin:0; padding:0}
-    html,body{height:100%}
-    body{
-      background: var(--page);
-      color: var(--ink);
-      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial;
-      line-height:1.6;
-      -webkit-font-smoothing:antialiased;
-    }
-    a{color:inherit; text-decoration:none}
-
-    /* ===== Nav ===== */
-    .nav{
-      position:sticky; top:0; z-index:1000;
-      backdrop-filter:saturate(160%) blur(10px);
-      background:rgba(0,0,0,.75);
-      border-bottom:1px solid var(--ring);
-    }
-    .wrap{width:min(1200px,92%); margin:0 auto;}
-    .nav-inner{display:flex; align-items:center; justify-content:space-between; padding:14px 0}
-    .brand{display:flex; align-items:center; gap:12px;}
-    .brand img{width:42px; height:42px; border-radius:10px;}
-    .brand .name{
-      font-family:Oswald; font-weight:700; font-size:20px;
-      background:linear-gradient(90deg,var(--gold),var(--gold-2));
-      -webkit-background-clip:text; color:transparent;
-    }
-    .links{display:flex; gap:18px; align-items:center;}
-    .links a{padding:8px 10px; border-radius:10px; font-weight:600;}
-    .links a:hover{background:rgba(255,255,255,.08)}
-    .buy-now{
-      background:var(--cta); color:var(--ctaText);
-      padding:10px 16px; font-weight:800; border-radius:999px;
-      box-shadow:0 8px 18px rgba(202,168,58,.35);
-      transition:all .3s ease;
-    }
-    .buy-now:hover{transform:scale(1.05)}
-
-    /* ===== Hero ===== */
-    .hero{
-      background:linear-gradient(180deg,#0b0b0b 0%, #141414 100%);
-      border-bottom:1px solid var(--ring);
-    }
-    .hero-inner{display:grid; grid-template-columns:1.2fr 1fr; gap:28px; align-items:center; padding:60px 0;}
-    .kick{font-size:12px; font-weight:800; letter-spacing:.28em; color:var(--gold); text-transform:uppercase;}
-    .hero h1{margin:10px 0; font-family:Oswald; font-size:clamp(34px,5.6vw,64px); line-height:1.06;}
-    .hero h1 .accent{background:linear-gradient(90deg,var(--gold),var(--gold-2)); -webkit-background-clip:text; color:transparent;}
-    .hero p{color:var(--muted); margin:10px 0 20px;}
-    .cta-row{display:flex; gap:14px; flex-wrap:wrap}
-    .btn{
-      padding:12px 18px; border-radius:12px; font-weight:800;
-      border:1px solid var(--ring); transition:all .3s ease; display:inline-block;
-    }
-    .btn.primary{background:var(--cta); color:var(--ctaText); border:none;}
-    .btn.primary:hover{background:var(--gold-2); transform:translateY(-3px);}
-    .btn.ghost{background:transparent; color:var(--ink);}
-    .btn.ghost:hover{background:rgba(255,255,255,.08)}
-
-    .hero-card{
-      background:var(--panel); color:#fff; border-radius:var(--radius);
-      border:1px solid var(--ring); box-shadow:var(--shadow); padding:20px;
-      animation:float 4s ease-in-out infinite alternate;
-    }
-    .hero-card h3{font-family:Oswald; margin-bottom:8px; font-size:20px;}
-    .note{display:flex; align-items:center; gap:8px; font-size:13px; color:var(--muted)}
-    .dot{width:8px; height:8px; border-radius:50%; background:var(--gold); box-shadow:0 0 6px var(--gold)}
-    @keyframes float{from{transform:translateY(0)}to{transform:translateY(-8px)}}
-
-    /* ===== Products ===== */
-    .section{padding:60px 0}
-    .section h2{font-family:Oswald; font-size:28px; margin-bottom:12px;}
-    .muted{color:var(--muted)}
-    .grid{display:grid; gap:20px; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); margin-top:20px;}
-    .card{
-      background:var(--panel); border:1px solid var(--ring); border-radius:14px;
-      padding:16px; box-shadow:var(--shadow); overflow:hidden;
-      transform:translateY(20px); opacity:0; transition:all .6s ease;
-    }
-    .card.visible{opacity:1; transform:translateY(0)}
-    .thumb{aspect-ratio:4/5; background:#111; border-radius:10px; overflow:hidden; display:grid; place-items:center; margin-bottom:12px;}
-    .thumb img{width:100%; height:100%; object-fit:contain; transition:transform .4s ease;}
-    .card:hover img{transform:scale(1.1)}
-    .title{font-weight:800; font-size:16px;}
-    .price{color:var(--gold-2); font-weight:800; margin-top:6px;}
-    .actions{display:flex; gap:10px; margin-top:12px}
-    .buy, .quick{
-      flex:1; text-align:center; font-weight:800; padding:10px 12px; border-radius:10px;
-    }
-    .buy{background:var(--cta); color:var(--ctaText)}
-    .buy:hover{background:var(--gold-2)}
-    .quick{border:1px solid var(--ring); color:var(--ink); background:transparent}
-    .quick:hover{background:rgba(255,255,255,.08)}
-
-    /* ===== Contact ===== */
-    .contact{background:#111; border-top:1px solid var(--ring); border-bottom:1px solid var(--ring); padding:40px 0;}
-    .contact-card{background:var(--panel); border:1px solid var(--ring); border-radius:14px; box-shadow:var(--shadow); padding:20px;}
-    .contact-card a{color:var(--gold)}
-
-    footer{text-align:center; color:var(--muted); font-size:13px; padding:18px 0;}
-
-    @media (max-width:900px){
-      .hero-inner{grid-template-columns:1fr;}
-    }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css"/>
 </head>
 <body>
 
   <!-- NAV -->
-  <div class="nav">
+  <header class="nav">
     <div class="wrap nav-inner">
-      <a class="brand" href="#home">
-        <img src="logo.jpg" alt="Warrior Lifestyle Logo" />
+      <a class="brand" href="/" aria-label="Warrior Lifestyle Home">
+        <img src="logo.jpg" alt="Warrior Lifestyle Logo">
         <span class="name">WARRIOR LIFESTYLE</span>
       </a>
-      <div class="links">
+
+      <button class="menu-btn" aria-label="Open menu" id="menuBtn">☰</button>
+
+      <nav class="links" id="navLinks">
         <a href="#shop">Shop</a>
         <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-        <a class="buy-now" href="https://d8bipr-ra.myshopify.com" target="_blank">Go to Shopify</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- HERO -->
-  <header id="home" class="hero">
-    <div class="wrap hero-inner">
-      <div>
-        <span class="kick">WEAR YOUR MINDSET</span>
-        <h1><span class="accent">Strength. Discipline. Legacy.</span> Built for pressure, power and purpose.</h1>
-        <p>Street • Gym • MMA. This is more than clothing — it’s identity. We bring Christ to the fight and purpose to the grind. Official store <strong>opening soon</strong>.</p>
-        <div class="cta-row">
-          <a class="btn primary" href="#shop">Shop Best Sellers</a>
-          <a class="btn ghost" href="https://d8bipr-ra.myshopify.com" target="_blank">Visit Shopify</a>
-        </div>
-      </div>
-
-      <div class="hero-card">
-        <h3>Store Status</h3>
-        <p>Shop is live on Shopify. New drops incoming.</p>
-        <div class="note"><span class="dot"></span> Limited quantities on first run.</div>
-        <div class="note"><span class="dot"></span> Secure checkout via Shopify.</div>
-      </div>
+        <a href="contact/">Contact</a>
+        <a class="buy-now" href="https://d8bipr-ra.myshopify.com" target="_blank" rel="noopener">Go to Shopify</a>
+      </nav>
     </div>
   </header>
 
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <span class="kick">WEAR YOUR MINDSET</span>
+        <h1><span class="accent">Strength. Discipline. Legacy.</span><br/>Built for pressure, power, and purpose.</h1>
+        <p class="lead">Street • Gym • MMA. Not fashion — a code. We bring Christ to the fight and purpose to the grind.</p>
+        <div class="cta-row">
+          <a class="btn primary" href="#shop">Shop Best Sellers</a>
+          <a class="btn ghost" href="https://d8bipr-ra.myshopify.com" target="_blank" rel="noopener">Visit Shopify</a>
+        </div>
+      </div>
+
+      <aside class="status-card" aria-label="Store status">
+        <h3>Store Status</h3>
+        <ul>
+          <li><span class="dot"></span> Limited quantities on first run.</li>
+          <li><span class="dot"></span> Secure checkout via Shopify.</li>
+          <li><span class="dot"></span> New drops incoming.</li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <!-- FEATURE STRIP -->
+  <section class="strip">
+    <div class="wrap strip-inner">
+      <div class="chip">Premium Materials</div>
+      <div class="chip">Built to Move</div>
+      <div class="chip">Fight-Tested</div>
+      <div class="chip">Fast & Secure Checkout</div>
+    </div>
+  </section>
+
   <!-- SHOP -->
-  <main class="wrap section" id="shop">
-    <h2>Best Sellers</h2>
-    <div class="muted">Premium fightwear — built to move, built to last.</div>
-    <div class="grid">
-      <!-- your product cards stay same -->
+  <main id="shop" class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Best Sellers</h2>
+        <p class="muted">Four core shorts — premium, durable, built to move.</p>
+      </div>
+
+      <div class="grid" role="list">
+        <!-- 1 -->
+        <article class="card" role="listitem">
+          <div class="thumb">
+            <img src="https://raw.githubusercontent.com/warriorlifestyleofficial/The.WarriorCode/refs/heads/main/boxing-shorts1.png" alt="Boxing Shorts 1" loading="lazy">
+          </div>
+          <div class="meta">
+            <div class="title">Boxing Shorts 1</div>
+            <div class="price">R699</div>
+          </div>
+          <div class="actions">
+            <a class="quick" href="https://d8bipr-ra.myshopify.com/products/shorts-1" target="_blank" rel="noopener">Details</a>
+            <a class="buy" href="https://d8bipr-ra.myshopify.com/products/shorts-1" target="_blank" rel="noopener">Buy</a>
+          </div>
+        </article>
+
+        <!-- 2 -->
+        <article class="card" role="listitem">
+          <div class="thumb">
+            <img src="https://raw.githubusercontent.com/warriorlifestyleofficial/The.WarriorCode/refs/heads/main/boxing-shorts2.png" alt="Boxing Shorts 2" loading="lazy">
+          </div>
+          <div class="meta">
+            <div class="title">Boxing Shorts 2</div>
+            <div class="price">R699</div>
+          </div>
+          <div class="actions">
+            <a class="quick" href="https://d8bipr-ra.myshopify.com/products/shorts-2" target="_blank" rel="noopener">Details</a>
+            <a class="buy" href="https://d8bipr-ra.myshopify.com/products/shorts-2" target="_blank" rel="noopener">Buy</a>
+          </div>
+        </article>
+
+        <!-- 3 -->
+        <article class="card" role="listitem">
+          <div class="thumb">
+            <img src="https://raw.githubusercontent.com/warriorlifestyleofficial/The.WarriorCode/refs/heads/main/boxing-shorts3.png" alt="Boxing Shorts 3" loading="lazy">
+          </div>
+          <div class="meta">
+            <div class="title">Boxing Shorts 3</div>
+            <div class="price">R699</div>
+          </div>
+          <div class="actions">
+            <a class="quick" href="https://d8bipr-ra.myshopify.com/products/shorts-3" target="_blank" rel="noopener">Details</a>
+            <a class="buy" href="https://d8bipr-ra.myshopify.com/products/shorts-3" target="_blank" rel="noopener">Buy</a>
+          </div>
+        </article>
+
+        <!-- 4 -->
+        <article class="card" role="listitem">
+          <div class="thumb">
+            <img src="https://raw.githubusercontent.com/warriorlifestyleofficial/The.WarriorCode/refs/heads/main/boxing-shorts4.png" alt="Boxing Shorts 4" loading="lazy">
+          </div>
+          <div class="meta">
+            <div class="title">Boxing Shorts 4</div>
+            <div class="price">R750</div>
+          </div>
+          <div class="actions">
+            <a class="quick" href="https://d8bipr-ra.myshopify.com/products/shorts-4" target="_blank" rel="noopener">Details</a>
+            <a class="buy" href="https://d8bipr-ra.myshopify.com/products/shorts-4" target="_blank" rel="noopener">Buy</a>
+          </div>
+        </article>
+      </div>
     </div>
   </main>
 
   <!-- ABOUT -->
-  <section id="about" class="wrap section">
-    <h2>About the Brand</h2>
-    <p class="muted" style="max-width:760px">
-      Warrior Lifestyle is not fashion — it’s a code. We fight with discipline, endure with strength,
-      and carry faith into every battle. Designed for street, gym, and MMA, our gear represents
-      strength, discipline, and the eternal truth of Christ.
-    </p>
-  </section>
-
-  <!-- CONTACT -->
-  <section id="contact" class="contact">
+  <section id="about" class="section">
     <div class="wrap">
-      <h2 style="font-family:Oswald;">Contact Us</h2>
-      <div class="contact-card">
-        <div><strong>Email:</strong> <a href="mailto:warriorlifestyle.store@gmail.com">warriorlifestyle.store@gmail.com</a></div>
-        <div><strong>Phone:</strong> 076 562 2628 / 076 944 6432</div>
+      <div class="section-head">
+        <h2>About the Brand</h2>
+        <p class="muted max">Warrior Lifestyle is not fashion — it’s a code. We fight with discipline, endure with strength, and carry faith into every battle. Designed for street, gym, and MMA, our gear represents strength, discipline, and the eternal truth of Christ.</p>
+      </div>
+      <div class="about-panels">
+        <div class="panel">
+          <h3>Built for Pressure</h3>
+          <p>Durable construction, fighter-focused fit, and clean lines with matte-black detail.</p>
+        </div>
+        <div class="panel">
+          <h3>Purpose in Every Stitch</h3>
+          <p>Symbols and statements that reflect discipline, faith, and legacy.</p>
+        </div>
+        <div class="panel">
+          <h3>Movement, Not Trend</h3>
+          <p>Made for training, the arena, and the street — not fast fashion.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <footer>
-    © <span id="year"></span> Warrior Lifestyle. All rights reserved.
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="wrap foot">
+      <div>© <span id="year"></span> Warrior Lifestyle. All rights reserved.</div>
+      <div class="foot-links">
+        <a href="/">Home</a>
+        <a href="#shop">Shop</a>
+        <a href="contact/">Contact</a>
+        <a href="https://d8bipr-ra.myshopify.com" target="_blank" rel="noopener">Shopify</a>
+      </div>
+    </div>
   </footer>
 
-  <script>
-    // current year
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // reveal cards on scroll
-    const cards = document.querySelectorAll('.card');
-    const observer = new IntersectionObserver(entries=>{
-      entries.forEach(e=>{
-        if(e.isIntersecting){ e.target.classList.add('visible'); }
-      });
-    },{threshold:.15});
-    cards.forEach(c=>observer.observe(c));
-  </script>
+  <script src="assets/app.js"></script>
 </body>
-</html>
+                                  </html>
