@@ -6,119 +6,132 @@
   <title>Warrior Lifestyle — Wear Your Mindset</title>
   <meta name="description" content="Warrior Lifestyle — premium fightwear built for pressure, power and purpose. Opening soon." />
   <meta name="theme-color" content="#0b0b0b" />
-  <meta property="og:title" content="Warrior Lifestyle — Wear Your Mindset" />
-  <meta property="og:description" content="Premium fightwear for street, gym, and MMA. Opening soon." />
-  <meta property="og:type" content="website" />
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 
   <style>
     :root{
-      --page:#f7f7f8;
-      --ink:#0e0e10;
-      --muted:#6b6b72;
-      --matte:#141416;
-      --panel:#1a1b1e;
-      --ring:rgba(0,0,0,.08);
-      --brand:#111;
-      --gold:#caa83a;
-      --gold-2:#e6cf7a;
-      --cta:#111111;
-      --ctaText:#ffffff;
+      --page:#0b0b0b;           /* matte black bg */
+      --ink:#ffffff;            /* primary text (white) */
+      --muted:#b5b5b5;          /* muted text */
+      --panel:#141414;          /* panels */
+      --ring:rgba(255,255,255,.1);
+      --brand:#111;             /* brand dark */
+      --gold:#caa83a;           /* gold accent */
+      --gold-2:#e6cf7a;         /* lighter gold */
+      --cta:#caa83a;            /* CTA gold */
+      --ctaText:#111111;        /* CTA text dark */
       --radius:16px;
-      --shadow:0 10px 30px rgba(17,17,17,.12);
+      --shadow:0 10px 30px rgba(0,0,0,.6);
     }
 
-    *{box-sizing:border-box}
+    *{box-sizing:border-box; margin:0; padding:0}
     html,body{height:100%}
     body{
-      margin:0;
       background: var(--page);
       color: var(--ink);
       font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial;
       line-height:1.6;
-      overflow-x:hidden;
+      -webkit-font-smoothing:antialiased;
     }
-    a{color:inherit}
-
-    /* ===== Intro Animation ===== */
-    .intro{
-      position:fixed; top:0; left:0; width:100%; height:100%;
-      background:#0b0b0b; display:flex; justify-content:center; align-items:center;
-      flex-direction:column; gap:12px;
-      z-index:2000; color:#fff; font-family:Oswald;
-      animation:fadeOut 1s ease forwards;
-      animation-delay:2.5s;
-    }
-    .intro-logo{
-      font-size:28px; letter-spacing:.1em;
-      background:linear-gradient(90deg,var(--gold),var(--gold-2));
-      -webkit-background-clip:text; color:transparent;
-      opacity:0; animation:fadeInUp 1s ease forwards;
-    }
-    .intro-tag{
-      font-size:14px; text-transform:uppercase; letter-spacing:.3em;
-      color:#aaa; opacity:0; animation:fadeInUp 1s ease forwards 0.6s;
-    }
-    @keyframes fadeOut{to{opacity:0; visibility:hidden}}
-    @keyframes fadeInUp{
-      from{opacity:0; transform:translateY(20px)}
-      to{opacity:1; transform:translateY(0)}
-    }
-
-    /* ===== Animate on Scroll ===== */
-    [data-animate]{
-      opacity:0; transform:translateY(20px); transition:all .8s ease;
-    }
-    [data-animate].active{opacity:1; transform:translateY(0)}
+    a{color:inherit; text-decoration:none}
 
     /* ===== Nav ===== */
     .nav{
       position:sticky; top:0; z-index:1000;
-      backdrop-filter:saturate(140%) blur(8px);
-      background:rgba(255,255,255,.75);
+      backdrop-filter:saturate(160%) blur(10px);
+      background:rgba(0,0,0,.75);
       border-bottom:1px solid var(--ring);
     }
     .wrap{width:min(1200px,92%); margin:0 auto;}
     .nav-inner{display:flex; align-items:center; justify-content:space-between; padding:14px 0}
-    .brand{display:flex; align-items:center; gap:12px; text-decoration:none;}
-    .brand img{width:40px; height:40px; object-fit:contain; border-radius:10px;}
-    .brand .name{font-family:Oswald; font-weight:700; font-size:18px;
-      background:linear-gradient(90deg,var(--brand),var(--gold)); -webkit-background-clip:text; color:transparent;}
+    .brand{display:flex; align-items:center; gap:12px;}
+    .brand img{width:42px; height:42px; border-radius:10px;}
+    .brand .name{
+      font-family:Oswald; font-weight:700; font-size:20px;
+      background:linear-gradient(90deg,var(--gold),var(--gold-2));
+      -webkit-background-clip:text; color:transparent;
+    }
     .links{display:flex; gap:18px; align-items:center;}
-    .links a{padding:8px 10px; font-weight:600; border-radius:10px;}
-    .links a:hover{background:rgba(0,0,0,.04)}
-    .buy-now{background:var(--cta); color:var(--ctaText); font-weight:800; padding:10px 14px; border-radius:999px;}
+    .links a{padding:8px 10px; border-radius:10px; font-weight:600;}
+    .links a:hover{background:rgba(255,255,255,.08)}
+    .buy-now{
+      background:var(--cta); color:var(--ctaText);
+      padding:10px 16px; font-weight:800; border-radius:999px;
+      box-shadow:0 8px 18px rgba(202,168,58,.35);
+      transition:all .3s ease;
+    }
+    .buy-now:hover{transform:scale(1.05)}
 
     /* ===== Hero ===== */
-    .hero{background:#fff; border-bottom:1px solid var(--ring);}
+    .hero{
+      background:linear-gradient(180deg,#0b0b0b 0%, #141414 100%);
+      border-bottom:1px solid var(--ring);
+    }
     .hero-inner{display:grid; grid-template-columns:1.2fr 1fr; gap:28px; align-items:center; padding:60px 0;}
-    .kick{font-size:12px; font-weight:800; letter-spacing:.28em; color:#7a7a81; text-transform:uppercase;}
-    .hero h1{margin:8px 0; font-family:Oswald; font-size:clamp(34px,5.6vw,64px); line-height:1.06;}
-    .hero h1 .accent{background:linear-gradient(90deg,var(--brand),var(--gold-2)); -webkit-background-clip:text; color:transparent;}
-    .hero p{color:var(--muted); margin:8px 0 18px;}
-    .btn{padding:12px 16px; border-radius:12px; font-weight:800; text-decoration:none; transition:all .3s;}
-    .btn.primary{background:var(--cta); color:var(--ctaText);}
-    .btn.primary:hover{background:linear-gradient(90deg,var(--brand),var(--gold)); color:#fff;}
-    .btn.ghost{background:#fff; border:1px solid var(--ring);}
-    .btn.ghost:hover{background:#f7f7f7}
+    .kick{font-size:12px; font-weight:800; letter-spacing:.28em; color:var(--gold); text-transform:uppercase;}
+    .hero h1{margin:10px 0; font-family:Oswald; font-size:clamp(34px,5.6vw,64px); line-height:1.06;}
+    .hero h1 .accent{background:linear-gradient(90deg,var(--gold),var(--gold-2)); -webkit-background-clip:text; color:transparent;}
+    .hero p{color:var(--muted); margin:10px 0 20px;}
+    .cta-row{display:flex; gap:14px; flex-wrap:wrap}
+    .btn{
+      padding:12px 18px; border-radius:12px; font-weight:800;
+      border:1px solid var(--ring); transition:all .3s ease; display:inline-block;
+    }
+    .btn.primary{background:var(--cta); color:var(--ctaText); border:none;}
+    .btn.primary:hover{background:var(--gold-2); transform:translateY(-3px);}
+    .btn.ghost{background:transparent; color:var(--ink);}
+    .btn.ghost:hover{background:rgba(255,255,255,.08)}
 
-    /* Cards hover effect */
-    .card{transition:transform .25s ease, box-shadow .25s ease;}
-    .card:hover{transform:translateY(-6px) scale(1.02); box-shadow:0 20px 40px rgba(0,0,0,.15)}
+    .hero-card{
+      background:var(--panel); color:#fff; border-radius:var(--radius);
+      border:1px solid var(--ring); box-shadow:var(--shadow); padding:20px;
+      animation:float 4s ease-in-out infinite alternate;
+    }
+    .hero-card h3{font-family:Oswald; margin-bottom:8px; font-size:20px;}
+    .note{display:flex; align-items:center; gap:8px; font-size:13px; color:var(--muted)}
+    .dot{width:8px; height:8px; border-radius:50%; background:var(--gold); box-shadow:0 0 6px var(--gold)}
+    @keyframes float{from{transform:translateY(0)}to{transform:translateY(-8px)}}
 
-    /* Footer */
-    footer{text-align:center; color:#7c7c86; font-size:13px; padding:18px 0;}
+    /* ===== Products ===== */
+    .section{padding:60px 0}
+    .section h2{font-family:Oswald; font-size:28px; margin-bottom:12px;}
+    .muted{color:var(--muted)}
+    .grid{display:grid; gap:20px; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); margin-top:20px;}
+    .card{
+      background:var(--panel); border:1px solid var(--ring); border-radius:14px;
+      padding:16px; box-shadow:var(--shadow); overflow:hidden;
+      transform:translateY(20px); opacity:0; transition:all .6s ease;
+    }
+    .card.visible{opacity:1; transform:translateY(0)}
+    .thumb{aspect-ratio:4/5; background:#111; border-radius:10px; overflow:hidden; display:grid; place-items:center; margin-bottom:12px;}
+    .thumb img{width:100%; height:100%; object-fit:contain; transition:transform .4s ease;}
+    .card:hover img{transform:scale(1.1)}
+    .title{font-weight:800; font-size:16px;}
+    .price{color:var(--gold-2); font-weight:800; margin-top:6px;}
+    .actions{display:flex; gap:10px; margin-top:12px}
+    .buy, .quick{
+      flex:1; text-align:center; font-weight:800; padding:10px 12px; border-radius:10px;
+    }
+    .buy{background:var(--cta); color:var(--ctaText)}
+    .buy:hover{background:var(--gold-2)}
+    .quick{border:1px solid var(--ring); color:var(--ink); background:transparent}
+    .quick:hover{background:rgba(255,255,255,.08)}
+
+    /* ===== Contact ===== */
+    .contact{background:#111; border-top:1px solid var(--ring); border-bottom:1px solid var(--ring); padding:40px 0;}
+    .contact-card{background:var(--panel); border:1px solid var(--ring); border-radius:14px; box-shadow:var(--shadow); padding:20px;}
+    .contact-card a{color:var(--gold)}
+
+    footer{text-align:center; color:var(--muted); font-size:13px; padding:18px 0;}
+
+    @media (max-width:900px){
+      .hero-inner{grid-template-columns:1fr;}
+    }
   </style>
 </head>
 <body>
-
-  <!-- Intro Animation -->
-  <div class="intro">
-    <div class="intro-logo">WARRIOR LIFESTYLE</div>
-    <div class="intro-tag">Wear Your Mindset</div>
-  </div>
 
   <!-- NAV -->
   <div class="nav">
@@ -138,36 +151,39 @@
 
   <!-- HERO -->
   <header id="home" class="hero">
-    <div class="wrap hero-inner" data-animate>
+    <div class="wrap hero-inner">
       <div>
         <span class="kick">WEAR YOUR MINDSET</span>
         <h1><span class="accent">Strength. Discipline. Legacy.</span> Built for pressure, power and purpose.</h1>
-        <p>Street • Gym • MMA. More than clothing — it’s identity. Bringing Christ to the fight and purpose to the grind.</p>
+        <p>Street • Gym • MMA. This is more than clothing — it’s identity. We bring Christ to the fight and purpose to the grind. Official store <strong>opening soon</strong>.</p>
         <div class="cta-row">
           <a class="btn primary" href="#shop">Shop Best Sellers</a>
           <a class="btn ghost" href="https://d8bipr-ra.myshopify.com" target="_blank">Visit Shopify</a>
         </div>
       </div>
-      <div class="hero-card" data-animate>
+
+      <div class="hero-card">
         <h3>Store Status</h3>
         <p>Shop is live on Shopify. New drops incoming.</p>
+        <div class="note"><span class="dot"></span> Limited quantities on first run.</div>
+        <div class="note"><span class="dot"></span> Secure checkout via Shopify.</div>
       </div>
     </div>
   </header>
 
   <!-- SHOP -->
   <main class="wrap section" id="shop">
-    <h2 data-animate>Best Sellers</h2>
+    <h2>Best Sellers</h2>
+    <div class="muted">Premium fightwear — built to move, built to last.</div>
     <div class="grid">
-      <!-- Product cards (same as your version) -->
-      <!-- keep your product HTML unchanged -->
+      <!-- your product cards stay same -->
     </div>
   </main>
 
   <!-- ABOUT -->
   <section id="about" class="wrap section">
-    <h2 data-animate>About the Brand</h2>
-    <p class="muted" data-animate>
+    <h2>About the Brand</h2>
+    <p class="muted" style="max-width:760px">
       Warrior Lifestyle is not fashion — it’s a code. We fight with discipline, endure with strength,
       and carry faith into every battle. Designed for street, gym, and MMA, our gear represents
       strength, discipline, and the eternal truth of Christ.
@@ -177,9 +193,10 @@
   <!-- CONTACT -->
   <section id="contact" class="contact">
     <div class="wrap">
-      <h2 style="font-family:Oswald;" data-animate>Contact Us</h2>
-      <div class="contact-card" data-animate>
+      <h2 style="font-family:Oswald;">Contact Us</h2>
+      <div class="contact-card">
         <div><strong>Email:</strong> <a href="mailto:warriorlifestyle.store@gmail.com">warriorlifestyle.store@gmail.com</a></div>
+        <div><strong>Phone:</strong> 076 562 2628 / 076 944 6432</div>
       </div>
     </div>
   </section>
@@ -189,16 +206,17 @@
   </footer>
 
   <script>
-    // year
+    // current year
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // animate on scroll
+    // reveal cards on scroll
+    const cards = document.querySelectorAll('.card');
     const observer = new IntersectionObserver(entries=>{
       entries.forEach(e=>{
-        if(e.isIntersecting){ e.target.classList.add('active'); }
+        if(e.isIntersecting){ e.target.classList.add('visible'); }
       });
-    },{threshold:.2});
-    document.querySelectorAll('[data-animate]').forEach(el=>observer.observe(el));
+    },{threshold:.15});
+    cards.forEach(c=>observer.observe(c));
   </script>
 </body>
 </html>
