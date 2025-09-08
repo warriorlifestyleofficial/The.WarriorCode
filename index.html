@@ -1,1 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Warrior Lifestyle – Fight with Faith</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    body { background-color: #0a0a0a; color: #f5f5f5; font-family: 'Arial', sans-serif; }
+    .hero { background: url('https://images.unsplash.com/photo-1608003013166-522d7c4c5c5f?auto=format&fit=crop&w=1600&q=80') no-repeat center center/cover; height: 100vh; display:flex; align-items:center; justify-content:center; }
+    .overlay { background-color: rgba(0,0,0,0.65); padding: 2rem; border-radius: 12px; }
+    .btn-primary { background-color: #e63946; padding: 12px 24px; border-radius: 8px; font-weight: bold; transition: 0.3s; }
+    .btn-primary:hover { background-color: #d62828; }
+  </style>
+</head>
+<body>
 
+  <!-- Navbar -->
+  <header class="flex justify-between items-center p-4 bg-black bg-opacity-80 fixed top-0 left-0 right-0 z-50">
+    <div class="text-2xl font-bold text-red-500">WARRIOR LIFESTYLE</div>
+    <nav class="space-x-6">
+      <a href="#about" class="hover:text-red-500">About</a>
+      <a href="#shop" class="hover:text-red-500">Shop</a>
+      <a href="#contact" class="hover:text-red-500">Contact</a>
+      <a href="#cartPanel" class="hover:text-red-500">Cart 🛒</a>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="overlay text-center">
+      <h1 class="text-4xl md:text-6xl font-extrabold">Discipline. Strength. Faith.</h1>
+      <p class="mt-4 text-lg">Warrior Lifestyle – Wear Your Mindset. Fight with Faith.</p>
+      <div class="mt-6">
+        <a href="#shop" class="btn-primary">Shop Now</a>
+        <a href="#about" class="ml-4 btn-primary">Learn More</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="py-20 px-6 md:px-20 bg-black">
+    <h2 class="text-3xl font-bold text-center text-red-500 mb-10">About Us</h2>
+    <div class="grid md:grid-cols-2 gap-10 items-center">
+      <img src="https://images.unsplash.com/photo-1581091012184-5c3b86d7a1c4?auto=format&fit=crop&w=900&q=80" alt="Warrior Training" class="rounded-lg shadow-lg">
+      <div>
+        <h3 class="text-xl font-bold mb-4">Our Story</h3>
+        <p class="mb-4">
+          Warrior Lifestyle was born from the spirit of fighters — in the gym, in the ring, and in life. 
+          We believe that discipline, strength, and faith are the true marks of a warrior.
+        </p>
+        <h3 class="text-xl font-bold mb-4">Our Vision</h3>
+        <p>
+          To inspire a new generation of fighters who not only train their bodies but also strengthen 
+          their faith. Every piece of gear and apparel reflects our mission: 
+          <strong>Fight with Faith.</strong>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Shop Section -->
+  <section id="shop" class="py-20 px-6 md:px-20 bg-gray-900">
+    <h2 class="text-3xl font-bold text-center text-red-500 mb-10">Shop</h2>
+    <div id="productGrid" class="grid md:grid-cols-3 gap-10">
+      <!-- Products will be injected by JS -->
+    </div>
+  </section>
+
+  <!-- Size Chart -->
+  <section id="size-chart" class="py-16 px-6 md:px-20 bg-black">
+    <h2 class="text-2xl font-bold text-center text-red-500 mb-6">Size Chart</h2>
+    <div class="overflow-x-auto">
+      <table class="table-auto w-full border border-gray-700 text-center">
+        <thead>
+          <tr class="bg-gray-800">
+            <th class="p-3">Size</th>
+            <th class="p-3">Chest (cm)</th>
+            <th class="p-3">Waist (cm)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="p-3">S</td><td>86–94</td><td>71–76</td>
+          </tr>
+          <tr>
+            <td class="p-3">M</td><td>95–102</td><td>77–84</td>
+          </tr>
+          <tr>
+            <td class="p-3">L</td><td>103–110</td><td>85–92</td>
+          </tr>
+          <tr>
+            <td class="p-3">XL</td><td>111–118</td><td>93–100</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Return / Exchange Policy -->
+  <section id="returns" class="py-16 px-6 md:px-20 bg-gray-900">
+    <h2 class="text-2xl font-bold text-center text-red-500 mb-6">Return & Exchange Policy</h2>
+    <p class="max-w-3xl mx-auto text-center">
+      We want you to love your Warrior Lifestyle gear. If you are not 100% satisfied, you can return or exchange 
+      your purchase within <strong>30 days</strong> of delivery. Items must be unworn, unwashed, and in original packaging.  
+      For returns, email us at <a href="mailto:support@warriorlifestyle.com" class="text-red-400">support@warriorlifestyle.com</a>.
+    </p>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="py-20 px-6 md:px-20 bg-black">
+    <h2 class="text-3xl font-bold text-center text-red-500 mb-10">Contact Us</h2>
+    <div class="max-w-xl mx-auto">
+      <form id="contactForm" class="space-y-4">
+        <input type="text" placeholder="Your Name" class="w-full p-3 rounded bg-gray-800 border border-gray-600" required>
+        <input type="email" placeholder="Your Email" class="w-full p-3 rounded bg-gray-800 border border-gray-600" required>
+        <textarea placeholder="Your Message" rows="4" class="w-full p-3 rounded bg-gray-800 border border-gray-600" required></textarea>
+        <button type="submit" class="btn-primary w-full">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-6 bg-gray-900 text-center border-t border-gray-700">
+    <p>&copy; <span id="year"></span> Warrior Lifestyle. All rights reserved. – <em>Fight with Faith</em>.</p>
+    <div class="mt-3 space-x-4">
+      <a href="#" class="hover:text-red-500">Instagram</a>
+      <a href="#" class="hover:text-red-500">Facebook</a>
+      <a href="#" class="hover:text-red-500">YouTube</a>
+    </div>
+              </footer>
+
+  <!-- Scripts -->
+  <script>
+    // ===== Year in Footer =====
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // ===== Products =====
+    const PRODUCTS = [
+      {
+        id: "p1",
+        title: "Warrior Shorts – Royal Edition",
+        price: 699,
+        sizes: ["S", "M", "L", "XL"],
+        img: "https://images.unsplash.com/photo-15423223616-5b2a9f24f1bc?q=80&w=1000&auto=format&fit=crop",
+        desc: "Royal blue & gold Muay Thai shorts. Clean, premium and ready for the ring."
+      },
+      {
+        id: "p2",
+        title: "Fight Tee – Discipline",
+        price: 399,
+        sizes: ["S", "M", "L", "XL"],
+        img: "https://images.unsplash.com/photo-1600180758890-8bd22d9a6cf0?q=80&w=1000&auto=format&fit=crop",
+        desc: "Breathable training tee with bold chest mark. Lightweight and perfect for sparring."
+      },
+      {
+        id: "p3",
+        title: "Hoodie – Faith Over Fear",
+        price: 899,
+        sizes: ["M", "L", "XL"],
+        img: "https://images.unsplash.com/photo-1520975918318-3e6ce020b3fa?q=80&w=1000&auto=format&fit=crop",
+        desc: "Premium cotton hoodie with scripture-inspired design. Warmth with warrior spirit."
+      }
+    ];
+
+    // ===== Render Products =====
+    const productGrid = document.getElementById("productGrid");
+    let cart = [];
+
+    function renderProducts() {
+      productGrid.innerHTML = "";
+      PRODUCTS.forEach(prod => {
+        productGrid.innerHTML += `
+          <div class="bg-gray-800 p-5 rounded-lg shadow hover:shadow-lg transition">
+            <img src="${prod.img}" alt="${prod.title}" class="rounded mb-4 h-48 w-full object-cover">
+            <h3 class="text-xl font-bold mb-2">${prod.title}</h3>
+            <p class="mb-2 text-gray-300">${prod.desc}</p>
+            <p class="mb-2 font-semibold">R${prod.price}</p>
+            <select id="size-${prod.id}" class="w-full mb-3 p-2 rounded bg-gray-700">
+              ${prod.sizes.map(s => `<option value="${s}">${s}</option>`).join("")}
+            </select>
+            <button onclick="addToCart('${prod.id}')" class="btn-primary w-full">Add to Cart</button>
+          </div>
+        `;
+      });
+    }
+    renderProducts();
+
+    // ===== Cart =====
+    function addToCart(id) {
+      const product = PRODUCTS.find(p => p.id === id);
+      const size = document.getElementById(`size-${id}`).value;
+      cart.push({ ...product, size });
+      alert(`${product.title} (Size ${size}) added to cart!`);
+    }
+
+    // ===== Contact Form =====
+    document.getElementById("contactForm").addEventListener("submit", e => {
+      e.preventDefault();
+      alert("Thank you! Your message has been sent. We'll respond soon.");
+      e.target.reset();
+    });
+  </script>
+</body>
+</html>
