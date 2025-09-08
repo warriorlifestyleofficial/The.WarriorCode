@@ -135,34 +135,7 @@
     // ===== Year in Footer =====
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // ===== Products =====
-    const PRODUCTS = [
-      {
-        id: "p1",
-        title: "Warrior Shorts – Royal Edition",
-        price: 699,
-        sizes: ["S", "M", "L", "XL"],
-        img: "https://images.unsplash.com/photo-15423223616-5b2a9f24f1bc?q=80&w=1000&auto=format&fit=crop",
-        desc: "Royal blue & gold Muay Thai shorts. Clean, premium and ready for the ring."
-      },
-      {
-        id: "p2",
-        title: "Fight Tee – Discipline",
-        price: 399,
-        sizes: ["S", "M", "L", "XL"],
-        img: "https://images.unsplash.com/photo-1600180758890-8bd22d9a6cf0?q=80&w=1000&auto=format&fit=crop",
-        desc: "Breathable training tee with bold chest mark. Lightweight and perfect for sparring."
-      },
-      {
-        id: "p3",
-        title: "Hoodie – Faith Over Fear",
-        price: 899,
-        sizes: ["M", "L", "XL"],
-        img: "https://images.unsplash.com/photo-1520975918318-3e6ce020b3fa?q=80&w=1000&auto=format&fit=crop",
-        desc: "Premium cotton hoodie with scripture-inspired design. Warmth with warrior spirit."
-      }
-    ];
-
+    
     // ===== Render Products =====
     const productGrid = document.getElementById("productGrid");
     let cart = [];
@@ -193,7 +166,84 @@
       cart.push({ ...product, size });
       alert(`${product.title} (Size ${size}) added to cart!`);
     }
+<script>
+  // ===== Year in Footer =====
+  document.getElementById("year").textContent = new Date().getFullYear();
 
+  // ===== PRODUCTS =====
+  const PRODUCTS = [
+    {
+      id: "short1",
+      title: "Warrior Shorts – Black & Gold",
+      price: 699,
+      sizes: ["S", "M", "L", "XL"],
+      img: "./images/short1.jpg",
+      desc: "Classic black shorts with gold trim — strength and elegance in the ring."
+    },
+    {
+      id: "short2",
+      title: "Warrior Shorts – Red Fury",
+      price: 699,
+      sizes: ["S", "M", "L", "XL"],
+      img: "./images/short2.jpg",
+      desc: "Bold red shorts designed for warriors who fight with fire and passion."
+    },
+    {
+      id: "short3",
+      title: "Warrior Shorts – White Spirit",
+      price: 699,
+      sizes: ["S", "M", "L", "XL"],
+      img: "./images/short3.jpg",
+      desc: "White shorts representing purity and focus. Fight with faith and clarity."
+    },
+    {
+      id: "short4",
+      title: "Warrior Shorts – Royal Blue",
+      price: 699,
+      sizes: ["S", "M", "L", "XL"],
+      img: "./images/short4.jpg",
+      desc: "Royal blue shorts with gold accents — embody discipline and legacy."
+    }
+  ];
+
+  // ===== Render Products =====
+  const productGrid = document.getElementById("productGrid");
+  let cart = [];
+
+  function renderProducts() {
+    productGrid.innerHTML = "";
+    PRODUCTS.forEach(prod => {
+      productGrid.innerHTML += `
+        <div class="bg-gray-800 p-5 rounded-lg shadow hover:shadow-lg transition">
+          <img src="${prod.img}" alt="${prod.title}" class="rounded mb-4 h-48 w-full object-cover">
+          <h3 class="text-xl font-bold mb-2">${prod.title}</h3>
+          <p class="mb-2 text-gray-300">${prod.desc}</p>
+          <p class="mb-2 font-semibold">R${prod.price}</p>
+          <select id="size-${prod.id}" class="w-full mb-3 p-2 rounded bg-gray-700">
+            ${prod.sizes.map(s => `<option value="${s}">${s}</option>`).join("")}
+          </select>
+          <button onclick="addToCart('${prod.id}')" class="btn-primary w-full">Add to Cart</button>
+        </div>
+      `;
+    });
+  }
+  renderProducts();
+
+  // ===== Cart =====
+  function addToCart(id) {
+    const product = PRODUCTS.find(p => p.id === id);
+    const size = document.getElementById(`size-${id}`).value;
+    cart.push({ ...product, size });
+    alert(`${product.title} (Size ${size}) added to cart!`);
+  }
+
+  // ===== Contact Form =====
+  document.getElementById("contactForm").addEventListener("submit", e => {
+    e.preventDefault();
+    alert("Thank you! Your message has been sent. We'll respond soon.");
+    e.target.reset();
+  });
+</script>
     // ===== Contact Form =====
     document.getElementById("contactForm").addEventListener("submit", e => {
       e.preventDefault();
