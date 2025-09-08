@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact – Warrior Lifestyle</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-black text-white font-sans">
+
+  <!-- NAVBAR -->
+  <nav class="flex justify-between items-center px-6 py-4 bg-black text-white font-bold shadow-md">
+    <a href="index.html" class="text-xl">Warrior Lifestyle</a>
+    <div class="flex gap-6">
+      <a href="index.html" class="hover:text-red-500">Home</a>
+      <a href="store.html" class="hover:text-red-500">Store</a>
+      <a href="contact.html" class="hover:text-red-500">Contact</a>
+    </div>
+  </nav>
+
+  <!-- CONTACT FORM -->
+  <section class="py-20 px-6 md:px-20 bg-gray-900 min-h-screen flex flex-col justify-center">
+    <h2 class="text-3xl font-bold text-center mb-8">Contact Us</h2>
+    
+    <!-- Replace "YOUR_FORM_ID" after you set up Formspree -->
+    <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="max-w-xl mx-auto space-y-4 bg-gray-800 p-8 rounded-lg shadow-lg">
+      
+      <input type="text" name="name" placeholder="Your Name" 
+             class="w-full p-3 rounded bg-gray-700 border border-gray-600" required />
+
+      <input type="email" name="email" placeholder="Your Email" 
+             class="w-full p-3 rounded bg-gray-700 border border-gray-600" required />
+
+      <input type="text" name="subject" placeholder="Subject" 
+             class="w-full p-3 rounded bg-gray-700 border border-gray-600" required />
+
+      <textarea name="message" placeholder="Your Message" 
+                class="w-full p-3 rounded bg-gray-700 border border-gray-600" rows="5" required></textarea>
+
+      <button type="submit" class="w-full py-3 bg-red-600 font-bold rounded hover:bg-red-700">
+        Send Message
+      </button>
+    </form>
+
+    <!-- Extra contact info -->
+    <div class="text-center mt-10 text-gray-300">
+      <p><strong>Warrior Lifestyle</strong></p>
+      <p>Creators: 076 562 2628 | 076 944 6432</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="py-6 text-center text-sm bg-black">
+    <p>&copy; <span id="year"></span> Warrior Lifestyle. All Rights Reserved. – Fight with Faith.</p>
+  </footer>
+
+  <script>
+    // Dynamic Year
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+                                    </html>
