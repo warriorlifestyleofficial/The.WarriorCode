@@ -5,64 +5,49 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Warrior Lifestyle</title>
   <script src="https://cdn.tailwindcss.com"></script>
-</head>
   <style>
-/* Floating crosses overlay */
-.cross-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none; /* Don't block clicks */
-  overflow: hidden;
-  z-index: 1; /* below text but above nav/content */
-}
+    /* Floating crosses overlay */
+    .cross-overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 1;
+    }
 
-.cross {
-  position: absolute;
-  font-size: 20px;
-  color: rgba(255, 215, 0, 0.15); /* faint gold glow */
-  animation: floatCross 12s linear infinite;
-}
+    .cross {
+      position: absolute;
+      font-size: 20px;
+      color: rgba(255, 215, 0, 0.15);
+      animation: floatCross 12s linear infinite;
+    }
 
-/* Cross floating animation */
-@keyframes floatCross {
-  0% {
-    transform: translateY(100vh) rotate(0deg);
-    opacity: 0;
-  }
-  20% {
-    opacity: 0.4;
-  }
-  80% {
-    opacity: 0.4;
-  }
-  100% {
-    transform: translateY(-10vh) rotate(360deg);
-    opacity: 0;
-  }
-}
- /* === Cross wallpaper behind the HERO === */
-.hero-with-crosses { position: relative; }
+    @keyframes floatCross {
+      0%   { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+      20%  { opacity: 0.4; }
+      80%  { opacity: 0.4; }
+      100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+    }
 
-.hero-with-crosses::before {
-  content: "";
-  position: absolute; inset: 0;
-  /* Repeating cross pattern (gold) */
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><text x='12' y='18' font-size='18' text-anchor='middle' fill='%23d4af37'>✝</text></svg>");
-  background-repeat: repeat;
-  background-size: 36px 36px;   /* make bigger/smaller to taste */
-  opacity: .30;                 /* stronger visibility */
-  z-index: 0;                   /* sits under dark overlay & text */
-  pointer-events: none;
-  }   
+    /* Cross wallpaper behind HERO */
+    .hero-with-crosses { position: relative; }
+    .hero-with-crosses::before {
+      content: "";
+      position: absolute; inset: 0;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><text x='12' y='18' font-size='18' text-anchor='middle' fill='%23d4af37'>✝</text></svg>");
+      background-repeat: repeat;
+      background-size: 36px 36px;
+      opacity: .25;
+      z-index: 0;
+      pointer-events: none;
+    }
   </style>
+</head>
 <body class="bg-black text-white font-sans">
 
-
   <!-- ===== NAVBAR ===== -->
-  <nav class="flex justify-between items-center px-6 py-4 bg-black text-white font-bold shadow-md">
+  <nav class="flex justify-between items-center px-6 py-4 bg-black text-white font-bold shadow-md relative z-20">
     <a href="index.html" class="text-xl">Warrior Lifestyle</a>
     <div class="flex gap-6">
       <a href="index.html" class="hover:text-red-500">Home</a>
@@ -72,58 +57,51 @@
   </nav>
 
   <!-- ===== HERO ===== -->
-  <header class="relative h-screen flex flex-col items-center justify-center text-center bg-cover bg-center hero-with-crosses" 
+  <header class="relative h-screen flex flex-col items-center justify-center text-center bg-cover bg-center hero-with-crosses"
     style="background-image:url('https://images.unsplash.com/photo-1605296867304-46d5465a13f1?auto=format&fit=crop&w=1600&q=80');">
-    <div class="absolute inset-0 bg-black bg-opacity-70"></div>
-    <div class="relative z-10">
-      <h1 class="text-5xl md:text-7xl font-extrabold mb-6">Discipline. Strength. Legacy.</h1>
-      <p class="text-xl md:text-2xl mb-8">This is the Warrior Lifestyle – Fight with Faith.</p>
-      <a href="store.html" class="px-6 py-3 bg-red-600 text-white font-bold rounded-lg shadow hover:bg-red-700">Shop Now</a>
-    </div>
     
-  <!-- Dark overlay -->
-  <div class="absolute inset-0 bg-black bg-opacity-70"></div>
+    <!-- Dark overlay -->
+    <div class="absolute inset-0 bg-black bg-opacity-70"></div>
 
-  <!-- Floating crosses overlay -->
-  <div class="cross-overlay">
-    <div class="cross" style="left:10%; animation-delay:0s;">✝</div>
-    <div class="cross" style="left:30%; animation-delay:2s;">✝</div>
-    <div class="cross" style="left:50%; animation-delay:4s;">✝</div>
-    <div class="cross" style="left:70%; animation-delay:6s;">✝</div>
-    <div class="cross" style="left:90%; animation-delay:8s;">✝</div>
-  </div>
+    <!-- Floating crosses overlay -->
+    <div class="cross-overlay">
+      <div class="cross" style="left:10%; animation-delay:0s;">✝</div>
+      <div class="cross" style="left:30%; animation-delay:2s;">✝</div>
+      <div class="cross" style="left:50%; animation-delay:4s;">✝</div>
+      <div class="cross" style="left:70%; animation-delay:6s;">✝</div>
+      <div class="cross" style="left:90%; animation-delay:8s;">✝</div>
+    </div>
 
-  <!-- Hero text -->
-  <div class="relative z-10">
-    <h1 class="text-5xl md:text-7xl font-extrabold mb-6">Discipline. Strength. Legacy.</h1>
-    <p class="text-xl md:text-2xl mb-8">This is the Warrior Lifestyle – Fight with Faith.</p>
-    <a href="store.html" class="px-6 py-3 bg-red-600 text-white font-bold rounded-lg">Shop Now</a>
-  </div>
+    <!-- Hero text -->
+    <div class="relative z-10 max-w-3xl px-6">
+      <h1 class="text-5xl md:text-7xl font-extrabold mb-6">Discipline. Strength. Legacy.</h1>
+      <p class="text-xl md:text-2xl mb-8 leading-relaxed">This is the Warrior Lifestyle – where faith fuels the fight and every battle shapes a legacy.</p>
+      <a href="store.html" class="px-6 py-3 bg-red-600 text-white font-bold rounded-lg shadow hover:bg-red-700 transition">Shop Now</a>
+    </div>
   </header>
 
   <!-- ===== ABOUT ===== -->
-  <section id="about" class="py-20 px-6 md:px-20">
+  <section id="about" class="py-20 px-6 md:px-20 bg-black relative z-10">
     <h2 class="text-3xl font-bold text-center mb-12">The Warrior Code</h2>
     <div class="grid md:grid-cols-2 gap-10 items-center">
       <img src="https://images.unsplash.com/photo-1605902711622-cfb43c4437d2?auto=format&fit=crop&w=800&q=80" class="rounded-lg shadow-lg"/>
       <div>
         <h3 class="text-xl font-bold mb-4">Our Story</h3>
-        <p class="mb-4">Warrior Lifestyle was born from the spirit of fighters who live with purpose. We believe that discipline, strength, and faith build true warriors.</p>
+        <p class="mb-4">Warrior Lifestyle was born from the spirit of fighters who live with purpose. More than clothing – it’s a movement. Every piece carries a reminder that strength is nothing without faith.</p>
         <h3 class="text-xl font-bold mb-4">Our Vision</h3>
-        <p>To inspire a new generation of fighters to battle with both skill and their faith. Every piece of gear and apparel carries the message: <strong>Fight with Faith.</strong></p>
+        <p>We exist to inspire a new generation of warriors – men and women who battle not only with strength, but with conviction. Our vision is simple: <strong>Fight with Faith.</strong></p>
       </div>
     </div>
   </section>
 
   <!-- ===== FOOTER ===== -->
-  <footer class="py-6 text-center text-sm bg-black">
+  <footer class="py-6 text-center text-sm bg-black relative z-20">
     <p>&copy; <span id="year"></span> Warrior Lifestyle. All Rights Reserved. – Fight with Faith.</p>
   </footer>
 
-  <!-- ===== SCRIPTS ===== -->
   <script>
     // Dynamic Year
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 </body>
-</html>
+  </html>
