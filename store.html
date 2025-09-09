@@ -7,34 +7,41 @@
   <script src="https://cdn.tailwindcss.com"></script>
 
   <!-- ✝ Modern Background with Cross Overlay -->
-  <style>
-    body {
-      background: linear-gradient(to bottom right, #0a0a0a, #1a1a1a, #000000);
-      color: #fff;
-      position: relative;
-      overflow-x: hidden;
-    }
+<style>
+  /* Dark gradient background */
+  body {
+    background: linear-gradient(to bottom right, #0a0a0a, #1a1a1a, #000000);
+    color: #fff;
+    overflow-x: hidden;
+  }
 
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'><text x='10' y='15' font-size='16' text-anchor='middle' fill='rgba(255,215,0,0.08)'>✝</text></svg>");
-      background-repeat: repeat;
-      background-size: 50px 50px;
-      z-index: 0;
-      pointer-events: none;
-      opacity: 0.25;
-    }
+  /* Cross overlay ONLY inside shop */
+  #shop {
+    position: relative;
+    z-index: 1;
+  }
 
-    main, nav, footer {
-      position: relative;
-      z-index: 1;
-    }
-  </style>
+  #shop::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'><text x='10' y='15' font-size='16' text-anchor='middle' fill='rgba(255,215,0,0.08)'>✝</text></svg>");
+    background-repeat: repeat;
+    background-size: 50px 50px;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.25;
+  }
+
+  /* Keep content above crosses */
+  #shop > * {
+    position: relative;
+    z-index: 1;
+  }
+      </style>
 </head>
 
   <!-- NAV -->
