@@ -127,43 +127,145 @@
 
   <!-- SCRIPTS -->
   <script>
-    // dynamic year
-    document.getElementById("year").textContent = new Date().getFullYear();
+// ===== Dynamic year (keep if present) =====
+if (document.getElementById("year")) {
+  document.getElementById("year").textContent = new Date().getFullYear();
+}
 
-    // PRODUCTS (image paths point to the images folder in the project root)
-    const PRODUCTS = [
-      {
-        id: "short1",
-        title: "Warrior's Boxing Armor – Iron Eclipse",
-        price: 699,
-        sizes: ["S","M","L"],
-        img: "boxing-shorts1.png",
-        desc: "Black and white shorts - Minimalist yet fierce - like the moment light and darkness collide, Iron Eclipse embodies resilience, clarity, and unstoppable focus – fight with faith - Live the Lifestyle, Wear The Mindset."
-      },
-      {
-        id: "short2",
-        title: "Warrior's Boxing Armor – Midnight Vengeance",
-        price: 699,
-        sizes: ["S","M","L","XL"],
-        img: "boxing-shorts2.png",
-        desc: "Black and Midnight Purple - A dark fusion of lighter in darkness in complete darkness - Midnight Vengeance embodies dominance, precision, and the relentless pursuit of victory, even in darkness- bring christ to the fight - Live The Lifestyle, Wear The Mindset."
-      },
-      {
-        id: "short3",
-        title: "Warrior's Boxing Armor - Vail Of Dawn",
-        price: 699,
-        sizes: ["S","M","L","XL"],
-        img: "boxing-shorts3.png",
-        desc: "White And Purple - Inspired by the first light breaking into the sky - Vail Of Dawn embodies purity and ambition, it represents renewal, focus, and the rise of a warrior for a new daily battle - courageous in spirit - Live The Lifestyle, Wear The Mindset."
-      },
-      {
-        id: "short4",
-        title: "Warrior's Boxing Armor - Blood Of Valor",
-        price: 699,
-        sizes: ["S","M","L","XL"],
-        img: "boxing-shorts4.png",
-        desc: "Original - Inspired by Sacrifice, Enternal glory and the Unshakeable Foundation Of Faith - Blood Of Valor embodies the warrior crowned not by ease, but by enduring the fight with faith, it is the path for a fighter who lays everything down for a greater cause - Unshakable In Faith - Live The Lifestyle, Wear The Mindset."
-      }
+// ===== PRODUCTS =====
+// Path note: images are expected at assets/boxing-shorts/... and assets/hoodies/...
+const PRODUCTS = [
+  // SHORTS (keep your descriptions)
+  {
+    id: "short1",
+    title: "Warrior's Boxing Armor – Iron Eclipse",
+    price: 699,
+    sizes: ["S","M","L"],
+    img: "assets/boxing-shorts/boxing-shorts1.png",
+    desc: "Black and white shorts - Minimalist yet fierce - like the moment light and darkness collide, Iron Eclipse embodies resilience, clarity, and unstoppable focus."
+  },
+  {
+    id: "short2",
+    title: "Warrior's Boxing Armor – Midnight Vengeance",
+    price: 699,
+    sizes: ["S","M","L","XL"],
+    img: "assets/boxing-shorts/boxing-shorts2.png",
+    desc: "Black and midnight purple - a subtle, powerful design built to dominate under lights."
+  },
+  {
+    id: "short3",
+    title: "Warrior's Boxing Armor – Vail Of Dawn",
+    price: 699,
+    sizes: ["S","M","L","XL"],
+    img: "assets/boxing-shorts/boxing-shorts3.png",
+    desc: "White and purple - Inspired by first light breaking the sky; Vail Of Dawn stands for renewal and focus."
+  },
+  {
+    id: "short4",
+    title: "Warrior's Boxing Armor – Blood Of Valor",
+    price: 699,
+    sizes: ["S","M","L","XL"],
+    img: "assets/boxing-shorts/boxing-shorts4.png",
+    desc: "Original - Inspired by sacrifice and courage. Blood Of Valor is for the warrior who gives everything for a greater cause."
+  },
+
+  // HOODIES (placeholders — update titles/descriptions as you want)
+  {
+    id: "hoodie1",
+    title: "Warrior Hoodie – Ember Back",
+    price: 1199,
+    sizes: ["S","M","L","XL"],
+    img: "assets/hoodies/warriors-hoodie1.png",
+    imgBack: "assets/hoodies/warriors-hoodie1back.png",
+    desc: "Classic hoodie - front design with a bold back emblem."
+  },
+  {
+    id: "hoodie2",
+    title: "Warrior Hoodie – Forest Guard",
+    price: 1199,
+    sizes: ["S","M","L","XL"],
+    img: "assets/hoodies/warriors-hoodie2.png",
+    imgBack: "assets/hoodies/warriors-hoodie2back.png",
+    desc: "Deep green hoodie with a strong back print — details to be added."
+  },
+  {
+    id: "hoodie3",
+    title: "Warrior Hoodie – Desert Remnant",
+    price: 1199,
+    sizes: ["S","M","L","XL"],
+    img: "assets/hoodies/warriors-hoodie3.png",
+    imgBack: "assets/hoodies/warriors-hoodie3back.jpg",
+    desc: "Tan hoodie with signature crest. Add your copy later."
+  },
+  {
+    id: "hoodie4",
+    title: "Warrior Hoodie – Night Watch",
+    price: 1199,
+    sizes: ["S","M","L","XL"],
+    img: "assets/hoodies/warrior-hoodie4.png",
+    imgBack: "assets/hoodies/warrior-hoodie4back.jpg",
+    desc: "Black hoodie with gold accents — details to come."
+  }
+];
+
+// ===== Render products into the grid =====
+function renderProducts() {
+  const grid = document.getElementById("productGrid");
+  if (!grid) return;
+
+  grid.innerHTML = PRODUCTS.map(p => {
+    // product preview: if there's a back image, show 3D flip container, otherwise single image
+    const preview = p.imgBack ? `
+      <div class="flip-wrap mb-4">
+        <div class="flip" data-id="${p.id}">
+          <div class="flip-inner">
+            <img class="face front product-card-img" src="${p.img}" alt="${p.title} front" />
+            <img class="face back product-card-img" src="${p.imgBack}" alt="${p.title} back" />
+          </div>
+        </div>
+      </div>
+    ` : `<img src="${p.img}" alt="${p.title}" class="rounded mb-4 product-card-img" />`;
+
+    return `
+      <article class="bg-gray-800 rounded-lg shadow-lg p-4 flex flex-col">
+        ${preview}
+        <h3 class="text-lg font-bold mb-1"><a href="product.html?id=${p.id}" class="hover:underline text-white">${p.title}</a></h3>
+        <p class="text-sm text-gray-300 mb-3">${p.desc}</p>
+        <p class="font-bold mb-2">R${p.price}</p>
+
+        <label class="sr-only" for="size-${p.id}">Select size for ${p.title}</label>
+        <select id="size-${p.id}" class="mb-3 p-2 rounded bg-gray-700 w-full">
+          ${p.sizes.map(s => `<option value="${s}">${s}</option>`).join("")}
+        </select>
+
+        <div class="flex gap-2 mt-auto">
+          <button class="add-to-cart flex-1 bg-red-600 px-4 py-2 rounded font-bold hover:bg-red-700" data-id="${p.id}">Add to Cart</button>
+          <a href="product.html?id=${p.id}" class="flex-1 text-center px-4 py-2 border border-gray-600 rounded">View</a>
+        </div>
+      </article>
+    `;
+  }).join("");
+}
+
+renderProducts();
+
+// ===== Add interactivity: flip preview toggle and demo Add to Cart =====
+document.addEventListener('click', e => {
+  // flip toggle (tap/click)
+  const flipEl = e.target.closest('.flip');
+  if (flipEl) {
+    flipEl.classList.toggle('flipped');
+  }
+
+  // add-to-cart demo
+  if (e.target.classList.contains('add-to-cart')) {
+    const id = e.target.dataset.id;
+    const sizeEl = document.getElementById(`size-${id}`);
+    const size = sizeEl ? sizeEl.value : 'N/A';
+    alert(`(Demo) Added ${id} — size ${size} to cart.`);
+  }
+});
+  </script>
     ];
 
     // Render products into the grid
